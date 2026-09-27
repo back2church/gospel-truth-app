@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BookOpen, Copy, Check, Heart, Play, Volume2, VolumeX, Sparkles, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { BookOpen, Copy, Check, Heart } from 'lucide-react';
 import { LanguageContent } from '../data.ts';
 
 interface GospelScriptureSectionProps {
@@ -7,15 +7,36 @@ interface GospelScriptureSectionProps {
   onOpenPrayerModal: () => void;
 }
 
+// Gospel video shorts mapped by language as requested:
+// English: https://youtube.com/shorts/Lq5jNEECZiM?feature=share
+// Deutsch: https://youtube.com/shorts/CNywpV2yYEc?feature=share
+// Italian: https://youtube.com/shorts/-CYtKabFD3A?feature=share
+const GOSPEL_VIDEOS: Record<string, { id: string; label: string; flag: string }> = {
+  en: { id: 'Lq5jNEECZiM', label: 'English', flag: '🇬🇧' },
+  de: { id: 'CNywpV2yYEc', label: 'Deutsch', flag: '🇨🇭' },
+  it: { id: '-CYtKabFD3A', label: 'Italiano', flag: '🇨🇭' },
+};
+
 export const GospelScriptureSection: React.FC<GospelScriptureSectionProps> = ({
   currentLang,
   onOpenPrayerModal,
 }) => {
   const [activeVerseIndex, setActiveVerseIndex] = useState(0);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const [isNarrating, setIsNarrating] = useState(false);
-  const [activeSceneTab, setActiveSceneTab] = useState<'all' | 'scene1' | 'scene2' | 'scene3' | 'scene4'>('all');
 
+  // Default video language to current language if available in GOSPEL_VIDEOS, else fallback to 'en'
+  const [videoLang, setVideoLang] = useState<string>(() => {
+    return GOSPEL_VIDEOS[currentLang.code] ? currentLang.code : 'en';
+  });
+
+  // Automatically update active video if user switches to English, Deutsch, or Italian
+  useEffect(() => {
+    if (GOSPEL_VIDEOS[currentLang.code]) {
+      setVideoLang(currentLang.code);
+    }
+  }, [currentLang.code]);
+
+  const activeVideo = GOSPEL_VIDEOS[videoLang] || GOSPEL_VIDEOS['en'];
   const { gospelMessage } = currentLang;
 
   const handleCopyVerse = (text: string, index: number) => {
@@ -24,34 +45,10 @@ export const GospelScriptureSection: React.FC<GospelScriptureSectionProps> = ({
     setTimeout(() => setCopiedIndex(null), 2000);
   };
 
-  // Browser speech synthesis to read scripture in current language if supported
-  const handleToggleNarration = () => {
-    if (!('speechSynthesis' in window)) return;
-
-    if (isNarrating) {
-      window.speechSynthesis.cancel();
-      setIsNarrating(false);
-      return;
-    }
-
-    window.speechSynthesis.cancel();
-    const fullText = `${gospelMessage.scene1Intro} ${gospelMessage.scene2Transition} ${gospelMessage.verses.map(v => `${v.reference}. ${v.text}`).join(' ')} ${gospelMessage.scene4Closing}`;
-    const utterance = new SpeechSynthesisUtterance(fullText);
-    utterance.lang = currentLang.code;
-    utterance.rate = 0.95;
-    utterance.pitch = 1.0;
-
-    utterance.onend = () => setIsNarrating(false);
-    utterance.onerror = () => setIsNarrating(false);
-
-    setIsNarrating(true);
-    window.speechSynthesis.speak(utterance);
-  };
-
   return (
     <section id="gospel" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-12">
+      <div className="text-center max-w-3xl mx-auto mb-10">
         <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-800 bg-sky-100/80 px-3 py-1 rounded-full mb-3">
           <BookOpen className="w-3.5 h-3.5" />
           <span>{gospelMessage.scriptureReference}</span>
@@ -63,63 +60,58 @@ export const GospelScriptureSection: React.FC<GospelScriptureSectionProps> = ({
           {gospelMessage.subtitle}
         </p>
 
-        {/* Read-Aloud / Narration button */}
-        <div className="mt-5 flex items-center justify-center gap-3">
-          <button
-            onClick={handleToggleNarration}
-            className={`inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl border transition-all ${
-              isNarrating
-                ? 'bg-amber-500 text-white border-amber-500 shadow-sm animate-pulse'
-                : 'bg-white/80 hover:bg-white text-slate-700 border-slate-200 shadow-xs'
-            }`}
-          >
-            {isNarrating ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-sky-600" />}
-            <span>{isNarrating ? 'Pause Audio Narration' : 'Listen in Your Language'}</span>
-          </button>
+        {/* Embedded Video Shorts according to language in place of "Listen in Your Language" */}
+        <div className="mt-8 flex flex-col items-center justify-center">
+          {/* Language Selector for the Gospel Shorts */}
+          <div className="flex items-center gap-1.5 p-1 bg-slate-100/90 backdrop-blur-md rounded-2xl mb-4 border border-slate-200/70 shadow-xs">
+            {Object.entries(GOSPEL_VIDEOS).map(([code, vid]) => (
+              <button
+                key={code}
+                type="button"
+                onClick={() => setVideoLang(code)}
+                className={`px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-all ${
+                  videoLang === code
+                    ? 'bg-white text-slate-900 shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                <span className="mr-1.5">{vid.flag}</span>
+                <span>{vid.label}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* YouTube Short Iframe Container */}
+          <div className="w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] bg-slate-950 rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 ring-4 ring-sky-100/60 transition-transform">
+            <iframe
+              key={activeVideo.id}
+              src={`https://www.youtube-nocookie.com/embed/${activeVideo.id}?rel=0&modestbranding=1`}
+              title="The Gospel from the Word of GOD"
+              className="w-full h-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+          <p className="mt-2.5 text-xs text-slate-500">
+            The Gospel from the Word of GOD · {activeVideo.label}
+          </p>
         </div>
       </div>
 
-      {/* Script Storyboard Card (Scenes 1–4 from video plan) */}
+      {/* The Gospel from the Word of GOD (Scene 3 only, scenes 1 and 2 removed) */}
       <div className="bg-white/90 backdrop-blur-md border border-sky-100 rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgba(20,60,100,0.05)] mb-12">
-        {/* Scene 1 & 2 Intro */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-8 border-b border-slate-100">
-          <div className="bg-gradient-to-br from-sky-50/70 to-blue-50/40 p-6 rounded-2xl border border-sky-100/60">
-            <div className="text-[11px] font-semibold text-sky-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <span>Scene 1</span>
-              <span>·</span>
-              <span>Welcome & Atmosphere</span>
-            </div>
-            <p className="text-sm sm:text-base text-slate-800 leading-relaxed font-serif italic">
-              "{gospelMessage.scene1Intro}"
-            </p>
-            <div className="mt-3 text-xs text-slate-500">
-              Visual: Calm azure sky, gentle lake reflection, warm sunlight glow.
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-amber-50/60 to-orange-50/30 p-6 rounded-2xl border border-amber-100/60">
-            <div className="text-[11px] font-semibold text-amber-800 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <span>Scene 2</span>
-              <span>·</span>
-              <span>Transition to Scripture</span>
-            </div>
-            <p className="text-sm sm:text-base text-slate-800 leading-relaxed font-serif italic">
-              "{gospelMessage.scene2Transition}"
-            </p>
-            <div className="mt-3 text-xs text-slate-500">
-              Visual: Minimalist typography fading onto the screen.
-            </div>
-          </div>
-        </div>
-
-        {/* Scene 3: Scripture Phrase-by-Phrase Reading */}
-        <div className="py-8">
+        <div className="pb-6">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-serif font-bold text-slate-900 flex items-center gap-2">
-              <span className="text-sky-600">Scene 3 ·</span>
-              <span>{gospelMessage.scene3ScriptureHeading}</span>
-            </h3>
-            <span className="text-xs text-slate-400">Click any verse to highlight & study</span>
+            <div>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-slate-900 flex items-center gap-2">
+                <span>The Gospel from the Word of GOD</span>
+              </h3>
+              <p className="text-xs sm:text-sm text-sky-700 font-medium mt-1">
+                {gospelMessage.scriptureReference}
+              </p>
+            </div>
+            <span className="text-xs text-slate-400 hidden sm:inline">Click any verse to highlight & study</span>
           </div>
 
           <div className="space-y-4">
@@ -175,11 +167,11 @@ export const GospelScriptureSection: React.FC<GospelScriptureSectionProps> = ({
           </div>
         </div>
 
-        {/* Scene 4: Closing */}
+        {/* Closing & Prayer Action */}
         <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-50/60 p-5 rounded-2xl">
           <div className="text-center sm:text-left">
             <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">
-              Scene 4 · Closing & Next Steps
+              Closing & Next Steps
             </span>
             <p className="text-sm font-serif italic text-slate-700">
               "{gospelMessage.scene4Closing}"
@@ -244,7 +236,6 @@ export const GospelScriptureSection: React.FC<GospelScriptureSectionProps> = ({
               className="px-6 py-3 text-xs sm:text-sm font-semibold text-slate-900 bg-white hover:bg-sky-50 rounded-xl transition-colors shadow-md flex items-center gap-2"
             >
               <span>I Made This Decision Today</span>
-              <ChevronRight className="w-4 h-4" />
             </button>
             <span className="text-xs text-sky-200">
               Romans 10:9 — "If you confess with your mouth that Jesus is Lord and believe in your heart that God raised Him from the dead, you will be saved."
