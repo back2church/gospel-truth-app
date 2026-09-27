@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+}
+
+body { margin: 0; background: linear-gradient(150deg, #eef8ff, #f8fafc 55%, #fffaf0); }
+section[id] { scroll-margin-top: 9rem; }
+button, select, a { -webkit-tap-highlight-color: transparent; }
+button, select { min-height: 44px; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid #0284c7 !important; outline-offset: 3px; }
+dialog::backdrop { background: rgb(2 6 23 / 0.7); backdrop-filter: blur(4px); }
+dialog { max-height: calc(100dvh - 2rem); }
+@media (max-width: 639px) {
+  input, select { font-size: 16px !important; }
+  #hero { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  section:not(#hero) { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

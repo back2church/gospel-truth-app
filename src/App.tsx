@@ -18,24 +18,26 @@ import { APP_CONTENT, SUPPORTED_LANGUAGES } from './data.ts';
 
 export default function App() {
   // Try to pick language matching browser or fallback to German / English
-  const [selectedLangCode, setSelectedLangCode] = useState<string>('en');
+  const [selectedLangCode, setSelectedLangCode] = useState<string>(() => {
+    let saved: string | null = null;
+    try { saved = localStorage.getItem('gospel-language'); } catch {}
+    const candidates = [saved, ...navigator.languages.map((code) => code.toLowerCase().split('-')[0])];
+    return candidates.find((code) => SUPPORTED_LANGUAGES.some((lang) => lang.code === code)) || 'en';
+  });
   const [isPrayerModalOpen, setIsPrayerModalOpen] = useState(false);
 
   // Check user language on initial mount
   useEffect(() => {
-    const navLang = navigator.language?.slice(0, 2).toLowerCase();
-    const matched = SUPPORTED_LANGUAGES.find((l) => l.code === navLang);
-    if (matched) {
-      setSelectedLangCode(matched.code);
-    }
-  }, []);
+    document.documentElement.lang = selectedLangCode;
+    try { localStorage.setItem('gospel-language', selectedLangCode); } catch {}
+  }, [selectedLangCode]);
 
   const currentContent = APP_CONTENT[selectedLangCode] || APP_CONTENT['en'];
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      el.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
     }
   };
 
@@ -57,7 +59,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 relative z-10 space-y-12 sm:space-y-16">
+      <main id="main-content" className="flex-1 relative z-10 space-y-4 sm:space-y-10">
         {/* Hero Welcome Section with 3s cycling greeting & language selector */}
         <HeroWelcome
           currentLang={currentContent}
