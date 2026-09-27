@@ -18,8 +18,8 @@ export const NextStepsSection: React.FC<NextStepsSectionProps> = ({
   const handleShareApp = () => {
     if (navigator.share) {
       navigator.share({
-        title: 'Gospel & Truth App',
-        text: 'Explore the core Gospel message and answers to faith questions in 10 languages.',
+        title: 'Good News & Truth',
+        text: 'Explore the Good News and answers to faith questions in 10 languages.',
         url: window.location.href,
       }).catch(() => {});
     } else {

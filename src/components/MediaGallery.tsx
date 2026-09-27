@@ -192,7 +192,7 @@ export const MediaGallery: React.FC<MediaGalleryProps> = ({ currentLang }) => {
                   type="text"
                   value={customTitle}
                   onChange={(e) => setCustomTitle(e.target.value)}
-                  placeholder="e.g. Gospel Message in Filipino"
+                  placeholder="e.g. Good News in Filipino"
                   className="w-full px-3.5 py-2.5 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500"
                 />
               </div>

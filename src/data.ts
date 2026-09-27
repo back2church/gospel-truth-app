@@ -308,9 +308,9 @@ const baseApologeticsEN: ApologeticItem[] = [
 const baseVideos: VideoItem[] = [
   {
     id: 'vid-gospel-1',
-    title: 'The Gospel Explained: 1 Corinthians 15:3-5',
-    category: 'Gospel Message',
-    speakerOrSource: 'Gospel & Truth (Swiss / English)',
+    title: 'The Good News Explained: 1 Corinthians 15:3-5',
+    category: 'Good News',
+    speakerOrSource: 'Good News & Truth (Swiss / English)',
     description: 'A clear walkthrough of 1 Corinthians 15:3–5 explaining that Christ died for our sins, was buried, rose on the third day, and appeared to eyewitnesses.',
     youtubeId: 'V9P4w024w4k', // BibleProject Gospel video
     isCustomGoogleVid: false,
@@ -440,7 +440,7 @@ const baseChurches: ChurchItem[] = [
 const baseArticlesEN: ResourceArticle[] = [
   {
     id: 'art-1',
-    title: 'The Gospel in 4 Simple Chapters: Creation, Fall, Redemption, Restoration',
+    title: 'The Good News in 4 Simple Chapters: Creation, Fall, Redemption, Restoration',
     category: 'Foundations',
     readTime: '4 min read',
     summary: 'The overarching meta-narrative of human history and why Jesus is the bridge back to God.',
@@ -493,7 +493,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     welcome: 'Hallo. Wähle deine Sprache.',
     nav: {
       home: 'Startseite',
-      gospelScripture: 'Das Evangelium',
+      gospelScripture: 'Die Gute Nachricht',
       media: 'Medien & Videos',
       apologetics: 'Apologetik FAQ',
       resources: 'Ressourcen',
@@ -503,11 +503,11 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     hero: {
       subtitle: 'Glaube, Wahrheit und zeitlose Hoffnung',
       description: 'Willkommen. Egal woher du kommst oder welche Sprache du sprichst: Entdecke die rettende Botschaft von Jesus Christus und fundierte Antworten auf die grossen Fragen des Lebens.',
-      ctaGospel: 'Evangelium lesen',
+      ctaGospel: 'Gute Nachricht entdecken',
       ctaApologetics: 'Wahrheits-Fragen erkunden',
     },
     gospelMessage: {
-      title: 'Die Kernbotschaft des Evangeliums',
+      title: 'Die Botschaft der Guten Nachricht',
       subtitle: 'Aus der Bibel: 1. Korinther 15, Verse 3 bis 5',
       scene1Intro: 'Hallo und herzlich willkommen. Wir freuen uns, dass du hier bist, um gemeinsam über Glauben und Wahrheit nachzudenken. Egal woher du stammst oder welche Sprache du sprichst: Du bist hier von Herzen willkommen.',
       scene2Transition: 'Nehmen wir uns einen Moment Zeit, um die zentrale Botschaft des Evangeliums zu betrachten, wie sie in der Bibel in 1. Korinther Kapitel 15, Verse 3 bis 5 geschrieben steht.',
@@ -605,7 +605,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     welcome: 'Salut. Choisis ta langue.',
     nav: {
       home: 'Accueil',
-      gospelScripture: "L'Évangile",
+      gospelScripture: "la Bonne Nouvelle",
       media: 'Vidéos & Médias',
       apologetics: 'Questions de Vérité',
       resources: 'Ressources',
@@ -615,11 +615,11 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     hero: {
       subtitle: 'Foi, raison et espérance éternelle',
       description: 'Bienvenue. D’où que vous veniez et quelle que soit votre langue : découvrez le message libérateur de Jésus-Christ et des réponses solides aux grandes questions de la vie.',
-      ctaGospel: "Découvrir l'Évangile",
+      ctaGospel: "Découvrir la Bonne Nouvelle",
       ctaApologetics: 'Questions et Réponses',
     },
     gospelMessage: {
-      title: "Le Message Central de l'Évangile",
+      title: "Le cœur de la Bonne Nouvelle",
       subtitle: 'Tiré de la Bible : 1 Corinthiens chapitre 15, versets 3 à 5',
       scene1Intro: 'Bonjour et bienvenue. Nous sommes très heureux que vous soyez ici pour explorer la foi et la vérité ensemble. Peu importe d’où vous venez ou la langue que vous parlez, vous êtes les bienvenus.',
       scene2Transition: 'Prenons un moment pour contempler le message fondamental de l’Évangile, consigné dans la Bible en 1 Corinthiens 15, versets 3 à 5.',
@@ -717,7 +717,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     welcome: 'Ciao. Scegli la tua lingua.',
     nav: {
       home: 'Home',
-      gospelScripture: 'Il Vangelo',
+      gospelScripture: 'La Buona Notizia',
       media: 'Video & Media',
       apologetics: 'Apologetica',
       resources: 'Risorse',
@@ -727,11 +727,11 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     hero: {
       subtitle: 'Fede, verità e speranza senza tempo',
       description: 'Benvenuto. Da qualunque luogo tu provenga e qualunque lingua tu parli: scopri il messaggio del Vangelo e risposte ponderate alle grandi domande.',
-      ctaGospel: 'Leggi il Vangelo',
+      ctaGospel: 'Scopri la Buona Notizia',
       ctaApologetics: 'Esplora le Risposte',
     },
     gospelMessage: {
-      title: 'Il Messaggio Centrale del Vangelo',
+      title: 'Il cuore della Buona Notizia',
       subtitle: 'Dalla Bibbia: 1 Corinzi capitolo 15, versetti da 3 a 5',
       scene1Intro: 'Ciao e benvenuto. Siamo felici che tu sia qui per esplorare insieme la fede e la verità. Da qualunque parte del mondo tu venga, sei il benvenuto.',
       scene2Transition: 'Prendiamoci un momento per considerare il messaggio centrale del Vangelo, scritto in 1 Corinzi 15, versetti 3-5.',
@@ -829,7 +829,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     welcome: 'Chau. Tscherna tia lingua.',
     nav: {
       home: 'Chasa',
-      gospelScripture: "L'Evangeli",
+      gospelScripture: "La Buna Novitad",
       media: 'Videos & Medias',
       apologetics: 'Veritad & Dumondas',
       resources: 'Resursas',
@@ -839,11 +839,11 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     hero: {
       subtitle: 'Cretta, veritad e speranza eterna',
       description: 'Bainvegni. Nua che ti eras er adascus: Scuvra il messadi da Jesus Cristus e respostas cleran a las grondas dumondas da la vita.',
-      ctaGospel: "Leger l'Evangeli",
+      ctaGospel: "Scuvrir la Buna Novitad",
       ctaApologetics: 'Dumondas da Veritad',
     },
     gospelMessage: {
-      title: "Il Messadi Central da l'Evangeli",
+      title: "Il cor da la Buna Novitad",
       subtitle: 'Or da la Bibla: 1 Corints chapitel 15, versets 3 a 5',
       scene1Intro: 'Chau e bainvegni. Nus essan fitg leds che ti es qua per explorar la cretta e la veritad ensemen. Ti es bainvegni qua da tut cor.',
       scene2Transition: 'Prendain in mument per guardar il messadi central da l’Evangeli, scrit en 1 Corints 15:3–5.',
@@ -938,27 +938,27 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     name: 'English',
     nativeName: 'English',
     flag: '🇬🇧',
-    welcome: 'Hi there. Choose your language.',
+    welcome: 'Welcome. Choose your language.',
     nav: {
       home: 'Home',
-      gospelScripture: 'The Gospel',
-      media: 'Media & Videos',
-      apologetics: 'Apologetics Q&A',
-      resources: 'Resource Hub',
+      gospelScripture: 'Good News',
+      media: 'Watch',
+      apologetics: 'Questions',
+      resources: 'Explore further',
       churches: 'Churches in Switzerland',
       nextSteps: 'Next Steps',
     },
     hero: {
-      subtitle: 'Faith, reason, and timeless hope',
-      description: 'Welcome. No matter where you come from or what language you speak, discover the core message of Jesus Christ and thoughtful answers to life’s deepest questions.',
-      ctaGospel: 'Read the Gospel',
-      ctaApologetics: 'Explore Truth Answers',
+      subtitle: 'Discover the hope of Jesus.',
+      description: 'Explore the Good News and thoughtful answers to your questions—in your language.',
+      ctaGospel: 'Explore the Good News',
+      ctaApologetics: 'Browse questions',
     },
     gospelMessage: {
-      title: 'The Core Message of the Gospel',
+      title: 'The heart of the Good News',
       subtitle: 'From the Bible: 1 Corinthians chapter 15, verses 3 through 5',
       scene1Intro: 'Hi there. Welcome. We are so glad you are here to explore faith and truth together. No matter where you are from or what language you speak, you are welcome here.',
-      scene2Transition: 'Let’s take a moment to look at the core message of the Gospel, found in the Bible, in 1 Corinthians chapter 15, verses 3 through 5.',
+      scene2Transition: 'Let’s take a moment to look at the Good News, found in the Bible, in 1 Corinthians chapter 15, verses 3 through 5.',
       scene3ScriptureHeading: '1 Corinthians 15:3–5',
       scene4Closing: 'Thank you for watching and reading. Feel free to explore more resources and answers throughout the app.',
       scriptureReference: '1 Corinthians 15:3-5',
@@ -999,15 +999,15 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     },
     mediaSection: {
       title: 'Media Gallery & Videos',
-      subtitle: 'Watch curated presentations on the Gospel, the historical evidence for the Resurrection, and cosmological arguments.',
+      subtitle: 'Short videos to help you explore the Good News and questions of faith.',
       filterAll: 'All Videos',
       customVideoPrompt: 'Embed Your Google Vids YouTube Presentation',
       pasteIdHint: 'Paste your YouTube Video ID here (e.g. V9P4w024w4k):',
       addCustomBtn: 'Update Video Card',
     },
     apologeticsSection: {
-      title: 'Apologetics Truth Accordion',
-      subtitle: 'Clear, intellectually rigorous answers addressing Atheism, Islam, Hinduism, and Judaism from renowned Christian thinkers.',
+      title: 'Questions about faith',
+      subtitle: 'Explore common questions with thoughtful answers from a Christian perspective.',
       searchPlaceholder: 'Search apologetics questions (e.g. Resurrection, Quran, Morality, Big Bang)...',
       categories: {
         all: 'All Worldviews',
@@ -1018,7 +1018,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       },
     },
     resourceSection: {
-      title: 'Resource Hub & Scripture Guides',
+      title: 'Explore further',
       subtitle: 'Thoughtfully written foundations to help you understand salvation and grow in faith.',
     },
     churchSection: {
@@ -1053,7 +1053,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     welcome: 'Çkemi. Zgjidh gjuhën tënde.',
     nav: {
       home: 'Kreu',
-      gospelScripture: 'Ungjilli',
+      gospelScripture: 'Lajmi i Mirë',
       media: 'Video & Media',
       apologetics: 'Përgjigje mbi të Vërtetën',
       resources: 'Burime Besimi',
@@ -1063,11 +1063,11 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     hero: {
       subtitle: 'Besimi, arsyeja dhe shpresa e përjetshme',
       description: 'Mirë se vini. Pa marrë parasysh se nga vini apo çfarë gjuhe flisni: zbuloni mesazhin e Ungjillit të Jezu Krishtit dhe përgjigje të qarta për pyetjet e thella të jetës.',
-      ctaGospel: 'Lexo Ungjillin',
+      ctaGospel: 'Zbulo Lajmin e Mirë',
       ctaApologetics: 'Eksploro të Vërtetën',
     },
     gospelMessage: {
-      title: 'Mesazhi Kryesor i Ungjillit',
+      title: 'Thelbi i Lajmit të Mirë',
       subtitle: 'Nga Bibla: 1 Korintasve kapitulli 15, vargjet 3 deri në 5',
       scene1Intro: 'Përshëndetje dhe mirë se vini. Jemi shumë të lumtur që jeni këtu për të eksploruar besimin dhe të vërtetën së bashku. Pavarësisht nga vini, jeni të mirëpritur këtu.',
       scene2Transition: 'Le të ndalemi një çast për të parë mesazhin thelbësor të Ungjillit, siç gjendet në Bibël, te 1 Korintasve 15:3–5.',
@@ -1165,7 +1165,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     welcome: 'Olá. Escolha o seu idioma.',
     nav: {
       home: 'Início',
-      gospelScripture: 'O Evangelho',
+      gospelScripture: 'A Boa Nova',
       media: 'Vídeos & Mídia',
       apologetics: 'Apologética',
       resources: 'Recursos',
@@ -1175,11 +1175,11 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     hero: {
       subtitle: 'Fé, razão e esperança eterna',
       description: 'Bem-vindo. Não importa de onde você veio ou qual idioma você fala: descubra a mensagem de Jesus Cristo e respostas seguras para a sua vida.',
-      ctaGospel: 'Ler o Evangelho',
+      ctaGospel: 'Descobrir a Boa Nova',
       ctaApologetics: 'Ver Respostas',
     },
     gospelMessage: {
-      title: 'A Mensagem Central do Evangelho',
+      title: 'O coração da Boa Nova',
       subtitle: 'Da Bíblia: 1 Coríntios capítulo 15, versículos 3 a 5',
       scene1Intro: 'Olá e seja muito bem-vindo. Estamos felizes por você estar aqui para explorar a fé e a verdade conosco. De onde quer que você seja, você é bem-vindo.',
       scene2Transition: 'Vamos dedicar um momento para contemplar a mensagem central do Evangelho em 1 Coríntios 15:3–5.',
@@ -1277,7 +1277,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     welcome: 'Hola. Elige tu idioma.',
     nav: {
       home: 'Inicio',
-      gospelScripture: 'El Evangelio',
+      gospelScripture: 'La Buena Noticia',
       media: 'Videos & Medios',
       apologetics: 'Apologética',
       resources: 'Recursos',
@@ -1287,11 +1287,11 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     hero: {
       subtitle: 'Fe, razón y esperanza eterna',
       description: 'Bienvenido. No importa de dónde vengas ni qué idioma hables: descubre el mensaje liberador de Jesucristo y respuestas fundamentadas a las grandes preguntas.',
-      ctaGospel: 'Leer el Evangelio',
+      ctaGospel: 'Descubre la Buena Noticia',
       ctaApologetics: 'Preguntas de Verdad',
     },
     gospelMessage: {
-      title: 'El Mensaje Central del Evangelio',
+      title: 'El corazón de la Buena Noticia',
       subtitle: 'De la Biblia: 1 Corintios capítulo 15, versículos 3 al 5',
       scene1Intro: 'Hola y bienvenido. Estamos muy contentos de que estés aquí para explorar la fe y la verdad juntos. No importa de dónde seas, eres bienvenido.',
       scene2Transition: 'Tomemos un momento para contemplar el mensaje medular del Evangelio en 1 Corintios 15:3–5.',
@@ -1389,7 +1389,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     welcome: 'Zdravo. Izaberi svoj jezik.',
     nav: {
       home: 'Početna',
-      gospelScripture: 'Jevanđelje',
+      gospelScripture: 'Dobra vest',
       media: 'Video & Mediji',
       apologetics: 'Pitanja Istine',
       resources: 'Resursi',
@@ -1399,11 +1399,11 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     hero: {
       subtitle: 'Vera, razum i večna nada',
       description: 'Dobrodošli. Bez obzira odakle dolazite i kojim jezikom govorite: otkrijte poruku Isusa Hrista i promišljene odgovore na životna pitanja.',
-      ctaGospel: 'Pročitaj Jevanđelje',
+      ctaGospel: 'Otkrij Dobru vest',
       ctaApologetics: 'Istraži Istinu',
     },
     gospelMessage: {
-      title: 'Srž Jevanđelja',
+      title: 'Suština Dobre vesti',
       subtitle: 'Iz Biblije: 1. Korinćanima 15, stihovi 3 do 5',
       scene1Intro: 'Pozdrav i dobrodošli. Veoma nam je drago što ste ovde da zajedno istražujemo veru i istinu. Bez obzira odakle dolazite, dobrodošli ste.',
       scene2Transition: 'Hajde da na trenutak pogledamo osnovnu poruku Jevanđelja, zapisanu u 1. Korinćanima 15:3–5.',
@@ -1501,7 +1501,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     welcome: 'Kumusta. Piliin ang iyong wika.',
     nav: {
       home: 'Tahanan',
-      gospelScripture: 'Ang Ebanghelyo',
+      gospelScripture: 'Ang Magandang Balita',
       media: 'Mga Video & Media',
       apologetics: 'Katotohanan & Apologetika',
       resources: 'Mga Gabay sa Pananampalataya',
@@ -1511,11 +1511,11 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     hero: {
       subtitle: 'Pananampalataya, katotohanan at walang-hanggang pag-asa',
       description: 'Maligayang pagdating. Saan ka man nanggaling o anuman ang iyong wika: tuklasin ang nagliligtas na mensahe ni Jesu-Cristo at matatag na mga sagot sa mahahalagang katanungan ng buhay.',
-      ctaGospel: 'Basahin ang Ebanghelyo',
+      ctaGospel: 'Tuklasin ang Magandang Balita',
       ctaApologetics: 'Tingnan ang mga Sagot',
     },
     gospelMessage: {
-      title: 'Ang Pangunahing Mensahe ng Ebanghelyo',
+      title: 'Ang Puso ng Magandang Balita',
       subtitle: 'Mula sa Bibliya: 1 Corinto kabanata 15, mga talata 3 hanggang 5',
       scene1Intro: 'Kumusta at maligayang pagdating. Lubos kaming nagagalak na nandito ka upang sama-sama nating tuklasin ang pananampalataya at katotohanan. Saan ka man nagmula, malugod kang tinatanggap dito.',
       scene2Transition: 'Maglaan tayo ng sandali upang tunghayan ang pangunahing mensahe ng Ebanghelyo, na matatagpuan sa Bibliya sa 1 Corinto kabanata 15, mga talata 3 hanggang 5.',

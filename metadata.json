@@ -1,6 +1,6 @@
 {
-  "name": "Gospel & Truth App",
-  "description": "Multilingual Evangelism & Christian Apologetics Web App with scripture reflections, apologetics Q&A, and media resources for locals and migrants in Switzerland and beyond.",
+  "name": "Good News & Truth",
+  "description": "Explore the Good News, thoughtful answers, and faith resources in multiple languages.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
