@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen, Clock, ArrowRight, X, Sparkles, Share2 } from 'lucide-react';
 import { ResourceArticle, LanguageContent } from '../data.ts';
+import { Modal } from './Modal.tsx';
 
 interface ResourceHubProps {
   currentLang: LanguageContent;
@@ -68,10 +69,11 @@ export const ResourceHub: React.FC<ResourceHubProps> = ({ currentLang }) => {
 
       {/* Article Reading Modal */}
       {selectedArticle && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-in fade-in">
+        <Modal label={selectedArticle.title} onClose={() => setSelectedArticle(null)} className="max-w-2xl bg-white">
           <div className="bg-white rounded-3xl p-6 sm:p-10 max-w-2xl w-full border border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setSelectedArticle(null)}
+              aria-label="Close article"
               className="absolute top-6 right-6 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
             >
               <X className="w-5 h-5" />
@@ -123,7 +125,7 @@ export const ResourceHub: React.FC<ResourceHubProps> = ({ currentLang }) => {
               </button>
             </div>
           </div>
-        </div>
+        </Modal>
       )}
     </section>
   );

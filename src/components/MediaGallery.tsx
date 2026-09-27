@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Video, Play, Plus, Edit2, ExternalLink, X, Check, Sparkles } from 'lucide-react';
 import { VideoItem, LanguageContent } from '../data.ts';
+import { Modal } from './Modal.tsx';
 
 interface MediaGalleryProps {
   currentLang: LanguageContent;
@@ -69,32 +70,28 @@ export const MediaGallery: React.FC<MediaGalleryProps> = ({ currentLang }) => {
         </div>
 
         {/* Action to test or add Google Vids YouTube ID */}
-        <button
+        {import.meta.env.DEV && <button
           onClick={() => setShowAddModal(true)}
           className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200/90 rounded-xl transition-all shadow-xs hover:border-sky-300"
         >
           <Plus className="w-4 h-4 text-sky-600" />
           <span>{currentLang.mediaSection.customVideoPrompt}</span>
-        </button>
+        </button>}
       </div>
 
       {/* Video Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {videoList.map((video) => (
+        {videoList.filter((video) => import.meta.env.DEV || !video.isCustomGoogleVid).map((video) => (
           <div
             key={video.id}
             className="group bg-white/90 backdrop-blur-md border border-slate-200/80 rounded-2xl overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col"
           >
             {/* YouTube Iframe or Responsive Thumbnail Preview */}
             <div className="relative aspect-video bg-slate-900 overflow-hidden">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?rel=0&modestbranding=1`}
-                title={video.title}
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-              />
+              <button onClick={() => setActiveVideoModal(video)} aria-label={video.title} className="relative block w-full h-full group">
+                <img src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`} alt="" loading="lazy" decoding="async" width="480" height="360" className="w-full h-full object-cover opacity-80 group-hover:opacity-100" />
+                <span className="absolute inset-0 flex items-center justify-center"><Play aria-hidden="true" className="w-14 h-14 p-3 bg-white text-sky-700 rounded-full shadow-lg" /></span>
+              </button>
             </div>
 
             {/* Content Details */}
@@ -138,12 +135,13 @@ export const MediaGallery: React.FC<MediaGalleryProps> = ({ currentLang }) => {
 
       {/* Theater Mode Video Modal */}
       {activeVideoModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in">
+        <Modal label={activeVideoModal.title} onClose={() => setActiveVideoModal(null)} className="max-w-4xl bg-slate-900">
           <div className="bg-slate-900 rounded-3xl overflow-hidden max-w-4xl w-full border border-slate-700 shadow-2xl relative">
             <div className="flex items-center justify-between p-4 px-6 border-b border-slate-800 text-white">
               <h3 className="text-sm font-semibold truncate pr-4">{activeVideoModal.title}</h3>
               <button
                 onClick={() => setActiveVideoModal(null)}
+                aria-label="Close video"
                 className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
               >
                 <X className="w-5 h-5" />
@@ -159,7 +157,7 @@ export const MediaGallery: React.FC<MediaGalleryProps> = ({ currentLang }) => {
               />
             </div>
           </div>
-        </div>
+        </Modal>
       )}
 
       {/* Custom Google Vids Modal */}

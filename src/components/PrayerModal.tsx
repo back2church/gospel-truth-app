@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Heart, Check, Copy, Sparkles, BookOpen, Share2 } from 'lucide-react';
 import { LanguageContent } from '../data.ts';
+import { Modal } from './Modal.tsx';
 
 interface PrayerModalProps {
   isOpen: boolean;
@@ -21,10 +22,11 @@ export const PrayerModal: React.FC<PrayerModalProps> = ({ isOpen, onClose, curre
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-in fade-in">
+    <Modal label={currentLang.gospelMessage.faithPrayerTitle} onClose={onClose} className="max-w-lg bg-white">
       <div className="bg-white rounded-3xl p-6 sm:p-10 max-w-lg w-full border border-slate-200 shadow-2xl relative">
         <button
           onClick={onClose}
+          aria-label="Close prayer"
           className="absolute top-6 right-6 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
         >
           <X className="w-5 h-5" />
@@ -99,6 +101,6 @@ export const PrayerModal: React.FC<PrayerModalProps> = ({ isOpen, onClose, curre
           </div>
         )}
       </div>
-    </div>
+    </Modal>
   );
 };
