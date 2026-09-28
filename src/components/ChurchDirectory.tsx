@@ -1,19 +1,20 @@
 import React, { useState, useMemo } from 'react';
 import { MapPin, Search, ExternalLink, Globe, Compass } from 'lucide-react';
-import { SWISS_CHURCHES, LanguageContent } from '../data.ts';
+import { ChurchItem, LanguageContent } from '../data.ts';
 
 interface ChurchDirectoryProps {
   currentLang: LanguageContent;
+  churches: ChurchItem[];
 }
 
-export const ChurchDirectory: React.FC<ChurchDirectoryProps> = ({ currentLang }) => {
+export const ChurchDirectory: React.FC<ChurchDirectoryProps> = ({ currentLang, churches }) => {
   const [searchCity, setSearchCity] = useState('');
   const [selectedCanton, setSelectedCanton] = useState<string>('all');
 
   const cantons = ['all', 'ZH', 'GE', 'BS', 'BE', 'VD', 'TI'];
 
   const filteredChurches = useMemo(() => {
-    return SWISS_CHURCHES.filter((church) => {
+    return churches.filter((church) => {
       const matchesCanton = selectedCanton === 'all' || church.canton.includes(selectedCanton);
       const query = searchCity.toLowerCase().trim();
       const matchesSearch =
@@ -25,7 +26,7 @@ export const ChurchDirectory: React.FC<ChurchDirectoryProps> = ({ currentLang })
 
       return matchesCanton && matchesSearch;
     });
-  }, [searchCity, selectedCanton]);
+  }, [churches, searchCity, selectedCanton]);
 
   return (
     <section id="churches" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">

@@ -14,7 +14,15 @@ import { ChurchDirectory } from './components/ChurchDirectory.tsx';
 import { NextStepsSection } from './components/NextStepsSection.tsx';
 import { Footer } from './components/Footer.tsx';
 import { PrayerModal } from './components/PrayerModal.tsx';
-import { APP_CONTENT, SUPPORTED_LANGUAGES } from './data.ts';
+import { APP_CONTENT, SUPPORTED_LANGUAGES, SWISS_CHURCHES } from './data.ts';
+import type { ManagedContent, ManagedItem } from './contentStore.ts';
+
+const AdminPanel = React.lazy(() => import('./components/AdminPanel.tsx').then(module => ({ default: module.AdminPanel })));
+const firebaseReady = Boolean(import.meta.env.VITE_FIREBASE_API_KEY && import.meta.env.VITE_FIREBASE_AUTH_DOMAIN && import.meta.env.VITE_FIREBASE_PROJECT_ID && import.meta.env.VITE_FIREBASE_APP_ID);
+const emptyContent: ManagedContent = { articles: [], churches: [], videos: [] };
+function itemsForLanguage<T>(items: ManagedItem[], language: string): T[] {
+  return items.filter(item => item.language === language || item.language === 'all').map(({ language: _language, published: _published, ...item }) => item as T);
+}
 
 export default function App() {
   // Try to pick language matching browser or fallback to German / English
@@ -25,6 +33,25 @@ export default function App() {
     return candidates.find((code) => SUPPORTED_LANGUAGES.some((lang) => lang.code === code)) || 'en';
   });
   const [isPrayerModalOpen, setIsPrayerModalOpen] = useState(false);
+  const [adminOpen, setAdminOpen] = useState(() => window.location.hash === '#admin');
+  const [managed, setManaged] = useState<ManagedContent>(emptyContent);
+
+  useEffect(() => {
+    const update = () => setAdminOpen(window.location.hash === '#admin');
+    window.addEventListener('hashchange', update);
+    return () => window.removeEventListener('hashchange', update);
+  }, []);
+  useEffect(() => {
+    if (!firebaseReady) return;
+    let unsubscribers: (() => void)[] = [];
+    let cancelled = false;
+    import('./contentStore.ts').then(({ subscribeContent }) => {
+      if (cancelled) return;
+      unsubscribers = (['articles', 'churches', 'videos'] as const).map(kind =>
+        subscribeContent(kind, items => setManaged(previous => ({ ...previous, [kind]: items }))));
+    });
+    return () => { cancelled = true; unsubscribers.forEach(unsubscribe => unsubscribe()); };
+  }, []);
 
   // Check user language on initial mount
   useEffect(() => {
@@ -32,7 +59,13 @@ export default function App() {
     try { localStorage.setItem('gospel-language', selectedLangCode); } catch {}
   }, [selectedLangCode]);
 
-  const currentContent = APP_CONTENT[selectedLangCode] || APP_CONTENT['en'];
+  const baseContent = APP_CONTENT[selectedLangCode] || APP_CONTENT['en'];
+  const currentContent = {
+    ...baseContent,
+    resources: mergeContent(baseContent.resources, itemsForLanguage(managed.articles, selectedLangCode), `${selectedLangCode}-`),
+    videos: mergeContent(baseContent.videos, itemsForLanguage(managed.videos, selectedLangCode), `${selectedLangCode}-`),
+  };
+  const churches = mergeContent(SWISS_CHURCHES.map(church => ({ ...church, id: churchId(church.name) })), itemsForLanguage(managed.churches, selectedLangCode)).map(({ id: _id, ...church }) => church);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -40,6 +73,8 @@ export default function App() {
       el.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
     }
   };
+
+  if (adminOpen) return <React.Suspense fallback={<p className="admin-shell">Loading content manager…</p>}><AdminPanel onClose={() => { window.location.hash = ''; setAdminOpen(false); }} /></React.Suspense>;
 
   return (
     <div className="min-h-screen flex flex-col relative selection:bg-sky-200 selection:text-sky-900">
@@ -75,9 +110,6 @@ export default function App() {
           onOpenPrayerModal={() => setIsPrayerModalOpen(true)}
         />
 
-        {/* Media Gallery with responsive YouTube embeds & Google Vids tester */}
-        <MediaGallery currentLang={currentContent} />
-
         {/* Apologetics Truth Accordion: Islam, Atheism, Hinduism, Judaism */}
         <ApologeticsAccordion currentLang={currentContent} />
 
@@ -85,7 +117,7 @@ export default function App() {
         <ResourceHub currentLang={currentContent} />
 
         {/* Swiss & Migrant Church Finder */}
-        <ChurchDirectory currentLang={currentContent} />
+        <ChurchDirectory currentLang={currentContent} churches={churches} />
 
         {/* Next Steps: Decision, prayer, and sharing */}
         <NextStepsSection
@@ -93,6 +125,9 @@ export default function App() {
           onOpenPrayerModal={() => setIsPrayerModalOpen(true)}
           onNavigateToSection={scrollToSection}
         />
+
+        {/* Keep videos as the final content section. */}
+        <MediaGallery currentLang={currentContent} />
       </main>
 
       {/* Footer */}
@@ -110,4 +145,15 @@ export default function App() {
       />
     </div>
   );
+}
+
+const churchId = (name: string) => `church-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+function mergeContent<T extends { id?: string; name?: string }>(defaults: T[], overrides: T[], prefix = ''): T[] {
+  const byId = new Map(defaults.map(item => [`${prefix}${item.id || churchId(item.name || '')}`, item]));
+  for (const item of overrides) {
+    const id = item.id || churchId(item.name || '');
+    if ((item as T & { deleted?: boolean }).deleted) byId.delete(id);
+    else byId.set(id, item);
+  }
+  return [...byId.values()];
 }
