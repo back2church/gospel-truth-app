@@ -1,3 +1,5 @@
+import { articleTranslations } from './articleTranslations.ts';
+
 export interface ScriptureVerse {
   reference: string;
   text: string;
@@ -482,6 +484,12 @@ const baseArticlesEN: ResourceArticle[] = [
   },
 ];
 
+const translatedArticles = (language: string): ResourceArticle[] =>
+  (articleTranslations[language] || articleTranslations.de).map((translation, index) => ({
+    ...baseArticlesEN[index],
+    ...translation,
+  }));
+
 // Complete multilingual translation database for all 10 languages
 export const APP_CONTENT: Record<string, LanguageContent> = {
   // 1. GERMAN
@@ -593,7 +601,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     },
     videos: baseVideos,
     apologetics: baseApologeticsEN,
-    resources: baseArticlesEN,
+    resources: translatedArticles('de'),
   },
 
   // 2. FRENCH
@@ -705,7 +713,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     },
     videos: baseVideos,
     apologetics: baseApologeticsEN,
-    resources: baseArticlesEN,
+    resources: translatedArticles('fr'),
   },
 
   // 3. ITALIAN
@@ -817,7 +825,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     },
     videos: baseVideos,
     apologetics: baseApologeticsEN,
-    resources: baseArticlesEN,
+    resources: translatedArticles('it'),
   },
 
   // 4. ROMANSH
@@ -929,7 +937,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     },
     videos: baseVideos,
     apologetics: baseApologeticsEN,
-    resources: baseArticlesEN,
+    resources: translatedArticles('rm'),
   },
 
   // 5. ENGLISH
@@ -1153,7 +1161,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     },
     videos: baseVideos,
     apologetics: baseApologeticsEN,
-    resources: baseArticlesEN,
+    resources: translatedArticles('sq'),
   },
 
   // 7. PORTUGUESE
@@ -1265,7 +1273,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     },
     videos: baseVideos,
     apologetics: baseApologeticsEN,
-    resources: baseArticlesEN,
+    resources: translatedArticles('pt'),
   },
 
   // 8. SPANISH
@@ -1377,7 +1385,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     },
     videos: baseVideos,
     apologetics: baseApologeticsEN,
-    resources: baseArticlesEN,
+    resources: translatedArticles('es'),
   },
 
   // 9. SERBIAN / CROATIAN
@@ -1489,7 +1497,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     },
     videos: baseVideos,
     apologetics: baseApologeticsEN,
-    resources: baseArticlesEN,
+    resources: translatedArticles('sr'),
   },
 
   // 10. FILIPINO / TAGALOG
@@ -1601,7 +1609,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     },
     videos: baseVideos,
     apologetics: baseApologeticsEN,
-    resources: baseArticlesEN,
+    resources: translatedArticles('fil'),
   },
 };
 

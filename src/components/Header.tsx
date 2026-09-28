@@ -15,13 +15,13 @@ export const Header: React.FC<HeaderProps> = ({currentLang, selectedLangCode, on
   const copy = designCopy(currentLang.code);
   const items = [
     {id: 'gospel', label: copy[0], Icon: Compass},
-    {id: 'media', label: copy[1], Icon: Play},
     {id: 'apologetics', label: copy[2], Icon: MessageCircle},
     {id: 'churches', label: copy[3], Icon: Users},
+    {id: 'media', label: copy[1], Icon: Play},
   ];
   useEffect(() => {
     const update = () => {
-      const anchors = ['gospel', 'media', 'apologetics', 'churches'];
+      const anchors = ['gospel', 'apologetics', 'churches', 'media'];
       let current = anchors[0];
       for (const id of anchors) if ((document.getElementById(id)?.getBoundingClientRect().top ?? Infinity) <= innerHeight * .45) current = id;
       setActive(current);

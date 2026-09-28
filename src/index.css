@@ -102,3 +102,28 @@ dialog { max-height: calc(100dvh - 2rem); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+/* Small, separate editorial workspace. Public navigation never exposes admin controls. */
+.admin-shell{max-width:1120px;margin:0 auto;padding:32px 20px 80px;color:#17313a}
+.admin-top,.admin-tabs{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.admin-top h1{font-size:clamp(2rem,5vw,3rem);font-weight:750;letter-spacing:-.04em}
+.admin-kicker{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:#167783;font-weight:700}
+.admin-shell button{cursor:pointer}
+.admin-top button,.admin-tabs button,.admin-card>button,.admin-form>button{border:1px solid #b9ced0;border-radius:10px;padding:9px 15px;background:white;font-weight:650}
+.admin-tabs{justify-content:flex-start;margin:28px 0 20px}
+.admin-tabs .selected,.admin-form>button{background:#087982;color:white;border-color:#087982}
+.admin-layout{display:grid;grid-template-columns:minmax(240px,1fr) minmax(320px,1.5fr);gap:20px;align-items:start}
+.admin-card{background:white;border:1px solid #dbe5e5;border-radius:20px;padding:24px;box-shadow:0 8px 32px #0d35400a}
+.admin-card h2{font-size:1.35rem;font-weight:700;margin-bottom:14px}
+.admin-card ul{margin-top:18px;max-height:65vh;overflow:auto}
+.admin-card li{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #e9efef}
+.admin-card li button:first-child{text-align:left;color:#087982}
+.admin-card li small{color:#62777a}
+.admin-delete{color:#ab3434;white-space:nowrap}
+.admin-field{display:block;margin:13px 0;font-size:.86rem;font-weight:650}
+.admin-field span{display:block;margin-bottom:5px}
+.admin-field input,.admin-field textarea,.admin-field select{display:block;width:100%;padding:10px 12px;border:1px solid #b9ced0;border-radius:9px;background:white;font-weight:400}
+.admin-field textarea{resize:vertical}
+.admin-field :is(input,textarea,select):focus{outline:2px solid #087982;outline-offset:1px}
+.admin-check{display:flex;align-items:center;gap:8px;margin:18px 0}
+.admin-message{margin-top:16px;color:#176b72}
+@media(max-width:700px){.admin-layout{grid-template-columns:1fr}.admin-card ul{max-height:220px}}
