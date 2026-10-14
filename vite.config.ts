@@ -5,6 +5,8 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    // GitHub Pages serves from /gospel-truth-app/; AI Studio / local keep '/'.
+    base: process.env.GITHUB_PAGES === 'true' ? '/gospel-truth-app/' : '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
