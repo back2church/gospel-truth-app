@@ -37,7 +37,7 @@ export const GospelScriptureSection: React.FC<GospelScriptureSectionProps> = ({c
               <img src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`} alt="" loading="lazy" /><span><Play size={24} fill="currentColor" /></span>
             </button>}
         </div>
-        <div className="shorts-languages" aria-label="Video language">
+        <div className="shorts-languages" aria-label={currentLang.ui.videoLanguage}>
           {Object.entries(GOOD_NEWS_VIDEOS).map(([code, item]) => <button key={code} onClick={() => { setVideoLang(code); setPlaying(false); }} aria-pressed={code === videoLang} className={code === videoLang ? 'selected' : ''}>{item.label}</button>)}
         </div>
       </div>

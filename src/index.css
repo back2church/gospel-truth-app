@@ -74,7 +74,9 @@ body { padding-bottom: 0; }
   .desktop-nav { display: none; }
   .language-control select { max-width: 104px; }
   .mobile-nav { position: fixed; z-index: 50; bottom: 0; left: 0; right: 0; display: grid; grid-template-columns: repeat(4, 1fr); padding: 6px 5px calc(6px + env(safe-area-inset-bottom)); background: rgb(250 249 246 / .97); border-top: 1px solid #e1e7e5; backdrop-filter: blur(16px); }
-  .mobile-nav .nav-item { display: flex; flex-direction: column; gap: 3px; min-width: 0; padding: 5px 1px; font-size: 10px; white-space: nowrap; }
+  .mobile-nav .nav-item { display: flex; flex-direction: column; justify-content: flex-start; gap: 3px; min-width: 0; padding: 5px 2px; font-size: 10px; line-height: 1.15; text-align: center; }
+  /* Long labels such as "Your next steps" may wrap to 2 lines (no white-space: nowrap). */
+  .mobile-nav .nav-item span { max-width: 100%; overflow-wrap: anywhere; }
   .welcome-section { padding: 58px 24px 52px; }
   .welcome-glow { top: 5%; right: -30%; width: 90%; height: 370px; }
   .welcome-section h1 { font-size: clamp(3rem, 13vw, 4.3rem); }

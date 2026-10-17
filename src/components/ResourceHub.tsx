@@ -2,21 +2,27 @@ import React, { useState } from 'react';
 import { BookOpen, Clock, ArrowRight, X, Sparkles, Share2 } from 'lucide-react';
 import { ResourceArticle, LanguageContent } from '../data.ts';
 import { Modal } from './Modal.tsx';
+import { BackBar } from './BackBar.tsx';
 
 interface ResourceHubProps {
   currentLang: LanguageContent;
+  onBack: () => void; // returns to the main page
 }
 
-export const ResourceHub: React.FC<ResourceHubProps> = ({ currentLang }) => {
+export const ResourceHub: React.FC<ResourceHubProps> = ({ currentLang, onBack }) => {
+  const { ui } = currentLang;
   const [selectedArticle, setSelectedArticle] = useState<ResourceArticle | null>(null);
 
+  // This is its own page (#resources), opened with the button at the end of the main page.
   return (
-    <section id="resources" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <div>
+    <BackBar backLabel={ui.back} title={currentLang.resourceSection.title} onBack={onBack} />
+    <section id="resources" className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-800 bg-sky-100/80 px-3 py-1 rounded-full mb-3">
           <BookOpen className="w-3.5 h-3.5" />
-          <span>Theology & Scripture Hub</span>
+          <span>{currentLang.nav.resources}</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-900 tracking-tight">
           {currentLang.resourceSection.title}
@@ -55,7 +61,7 @@ export const ResourceHub: React.FC<ResourceHubProps> = ({ currentLang }) => {
                 onClick={() => setSelectedArticle(article)}
                 className="text-xs font-semibold text-sky-600 hover:text-sky-800 inline-flex items-center gap-1.5 transition-colors cursor-pointer"
               >
-                <span>Read Article</span>
+                <span>{ui.readArticle}</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </button>
 
@@ -73,7 +79,7 @@ export const ResourceHub: React.FC<ResourceHubProps> = ({ currentLang }) => {
           <div className="bg-white rounded-3xl p-6 sm:p-10 max-w-2xl w-full border border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setSelectedArticle(null)}
-              aria-label="Close article"
+              aria-label={ui.closeArticle}
               className="absolute top-6 right-6 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
             >
               <X className="w-5 h-5" />
@@ -102,7 +108,7 @@ export const ResourceHub: React.FC<ResourceHubProps> = ({ currentLang }) => {
             {/* Scripture References */}
             <div className="mt-8 pt-6 border-t border-slate-100">
               <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
-                Scripture Cross-References
+                {ui.scriptureRefs}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {selectedArticle.scriptureReferences.map((ref) => (
@@ -121,12 +127,13 @@ export const ResourceHub: React.FC<ResourceHubProps> = ({ currentLang }) => {
                 onClick={() => setSelectedArticle(null)}
                 className="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold transition-colors"
               >
-                Close Article
+                {ui.closeArticle}
               </button>
             </div>
           </div>
         </Modal>
       )}
     </section>
+    </div>
   );
 };

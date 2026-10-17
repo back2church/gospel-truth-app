@@ -13,6 +13,7 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
     'ath-1': true, // Keep first open by default
   });
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const { ui } = currentLang;
 
   const toggleItem = (id: string) => {
     setExpandedIds((prev) => ({
@@ -34,7 +35,8 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
   };
 
   const handleCopy = (item: ApologeticItem) => {
-    const textToCopy = `Question: ${item.question}\n\nSummary: ${item.shortAnswer}\n\nDetailed Answer: ${item.detailedAnswer}\n\nKey Scriptures: ${item.keyScriptures.join(', ')}\n\nRecommended Apologists: ${item.recommendedThinkers.join(', ')}`;
+    const t = ui.copyText;
+    const textToCopy = `${t.question}: ${item.question}\n\n${t.summary}: ${item.shortAnswer}\n\n${t.answer}: ${item.detailedAnswer}\n\n${t.scriptures}: ${item.keyScriptures.join(', ')}\n\n${t.thinkers}: ${item.recommendedThinkers.join(', ')}`;
     navigator.clipboard.writeText(textToCopy);
     setCopiedId(item.id);
     setTimeout(() => setCopiedId(null), 2000);
@@ -54,20 +56,8 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
     });
   }, [currentLang.apologetics, activeCategory, searchQuery]);
 
-  const getWorldviewLabel = (worldview: string) => {
-    switch (worldview) {
-      case 'atheism':
-        return 'Atheism & Science';
-      case 'islam':
-        return 'Islam & The Quran';
-      case 'hinduism':
-        return 'Hinduism & Karma';
-      case 'judaism':
-        return 'Judaism & Prophecy';
-      default:
-        return 'Worldview Truth';
-    }
-  };
+  // The name of a topic comes from the language texts (same names as the filter buttons)
+  const getWorldviewLabel = (worldview: ApologeticItem['worldview']) => currentLang.apologeticsSection.categories[worldview];
 
   return (
     <section id="apologetics" className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
@@ -75,7 +65,7 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
       <div className="text-center max-w-3xl mx-auto mb-10">
         <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-800 bg-sky-100/80 px-3 py-1 rounded-full mb-3">
           <HelpCircle className="w-3.5 h-3.5" />
-          <span>Christian Apologetics & Truth</span>
+          <span>{ui.badgeQuestions}</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-900 tracking-tight">
           {currentLang.apologeticsSection.title}
@@ -102,7 +92,7 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
               onClick={() => setSearchQuery('')}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 px-2 py-1"
             >
-              Clear
+              {ui.clear}
             </button>
           )}
         </div>
@@ -167,14 +157,14 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
               onClick={handleExpandAll}
               className="hover:text-sky-700 transition-colors cursor-pointer"
             >
-              Expand all
+              {ui.expandAll}
             </button>
             <span>·</span>
             <button
               onClick={handleCollapseAll}
               className="hover:text-sky-700 transition-colors cursor-pointer"
             >
-              Collapse all
+              {ui.collapseAll}
             </button>
           </div>
         </div>
@@ -184,7 +174,7 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
       {filteredItems.length === 0 ? (
         <div className="text-center py-12 bg-white/60 rounded-2xl border border-slate-200/80">
           <p className="text-sm text-slate-500">
-            No questions matched your search criteria. Try a different topic or keyword.
+            {ui.noResults}
           </p>
         </div>
       ) : (
@@ -207,7 +197,7 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
                     <div className="flex items-center gap-2 text-xs text-sky-700 font-medium">
                       <span>{getWorldviewLabel(item.worldview)}</span>
                       <span aria-hidden="true">·</span>
-                      <span className="text-slate-500 font-normal">Christian Apologetics</span>
+                      <span className="text-slate-500 font-normal">{ui.christianApologetics}</span>
                     </div>
 
                     <h3 className="text-base sm:text-lg font-serif font-bold text-slate-900 leading-snug">
@@ -236,14 +226,14 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
                   <div className="px-5 pb-6 sm:px-6 sm:pb-6 border-t border-slate-100 pt-5 space-y-5 animate-in fade-in duration-200">
                     {/* Summary callout */}
                     <div className="bg-sky-50/80 p-4 rounded-xl border border-sky-100 text-xs sm:text-sm text-sky-950 font-medium leading-relaxed">
-                      <span className="font-bold text-sky-900 block mb-1">Core Proposition:</span>
+                      <span className="font-bold text-sky-900 block mb-1">{ui.coreProposition}</span>
                       {item.shortAnswer}
                     </div>
 
                     {/* Detailed Analysis */}
                     <div>
                       <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
-                        Philosophical & Theological Defense
+                        {ui.defenseHeading}
                       </h4>
                       <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                         {item.detailedAnswer}
@@ -255,7 +245,7 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
                       <div>
                         <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 mb-2">
                           <BookOpen className="w-3.5 h-3.5 text-sky-600" />
-                          <span>Key Biblical Cross-References</span>
+                          <span>{ui.crossReferences}</span>
                         </div>
                         <div className="flex flex-wrap gap-2 text-xs text-slate-600">
                           {item.keyScriptures.map((ref) => (
@@ -272,7 +262,7 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
                       <div>
                         <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 mb-2">
                           <UserCheck className="w-3.5 h-3.5 text-sky-600" />
-                          <span>Recommended Thinkers & Scholars</span>
+                          <span>{ui.thinkers}</span>
                         </div>
                         <div className="text-xs text-slate-600">
                           {item.recommendedThinkers.join(', ')}
@@ -289,12 +279,12 @@ export const ApologeticsAccordion: React.FC<ApologeticsAccordionProps> = ({ curr
                         {copiedId === item.id ? (
                           <>
                             <Check className="w-3.5 h-3.5 text-emerald-600" />
-                            <span className="text-emerald-700 font-medium">Copied!</span>
+                            <span className="text-emerald-700 font-medium">{ui.copied}</span>
                           </>
                         ) : (
                           <>
                             <Copy className="w-3.5 h-3.5" />
-                            <span>Copy Full Answer</span>
+                            <span>{ui.copyAnswer}</span>
                           </>
                         )}
                       </button>
