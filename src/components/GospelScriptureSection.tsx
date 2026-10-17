@@ -32,9 +32,9 @@ export const GospelScriptureSection: React.FC<GospelScriptureSectionProps> = ({c
       </div>
       <div className="shorts-panel">
         <div className="shorts-frame">
-          {playing ? <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={`${gospelMessage.title} · ${video.label}`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /> :
+          {playing ? <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={`${gospelMessage.title} · ${video.label}`} allow="autoplay; encrypted-media; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /> :
             <button type="button" onClick={() => setPlaying(true)} aria-label={`${gospelMessage.title} · ${video.label}`} className="shorts-play">
-              <img src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`} alt="" loading="lazy" /><span><Play size={24} fill="currentColor" /></span>
+              <img src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`} alt="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin" /><span><Play size={24} fill="currentColor" /></span>
             </button>}
         </div>
         <div className="shorts-languages" aria-label={currentLang.ui.videoLanguage}>

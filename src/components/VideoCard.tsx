@@ -22,6 +22,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, currentLang, onPlay
         src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
         alt=""
         loading="lazy"
+        referrerPolicy="strict-origin-when-cross-origin"
         decoding="async"
         width="480"
         height="360"
