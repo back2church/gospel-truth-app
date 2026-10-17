@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Compass, MessageCircle, Footprints, Users, Languages } from 'lucide-react';
 import { SUPPORTED_LANGUAGES, LanguageContent, APP_NAME } from '../data.ts';
-import { designCopy } from '../designCopy.ts';
+import { designCopy, nextStepsMenuLabel } from '../designCopy.ts';
 
 interface HeaderProps {
   currentLang: LanguageContent;
@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = ({currentLang, selectedLangCode, on
   const items = [
     {id: 'discover', label: copy[0], Icon: Compass},
     {id: 'apologetics', label: copy[2], Icon: MessageCircle},
-    {id: 'next-steps', label: currentLang.nextStepsSection.title, Icon: Footprints},
+    {id: 'next-steps', label: nextStepsMenuLabel(currentLang.code, currentLang.nextStepsSection.title), Icon: Footprints},
     {id: 'connect', label: copy[3], Icon: Users},
   ];
   useEffect(() => {

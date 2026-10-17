@@ -1,7 +1,9 @@
 // Short navigation labels remain readable on small screens in every supported language.
 // Position in each list: 0 = Discover, 1 = Watch (not used any more, there is no "Watch" item in the menu),
 // 2 = Questions, 3 = Connect, 4 = "You are welcome here", 5 = Show more, 6 = Show less.
-// The 4th menu item "Your next steps" is NOT in this list: it uses nextStepsSection.title of the language (data.ts).
+// The menu item "Your next steps" is NOT in this list: it uses nextStepsSection.title of the language (data.ts),
+// except where a language has its own entry in `nextStepsMenuLabels` below (Filipino keeps the English words in the menu).
+// Filipino menu labels (Discover, Questions, Your next steps, Connect) stay English on purpose (Siggi's decision).
 const labels: Record<string, string[]> = {
   en: ['Discover', 'Watch', 'Questions', 'Connect', 'You are welcome here', 'Show more', 'Show less'],
   de: ['Entdecken', 'Videos', 'Fragen', 'Kontakt', 'Du bist hier willkommen', 'Mehr anzeigen', 'Weniger anzeigen'],
@@ -15,3 +17,9 @@ const labels: Record<string, string[]> = {
   fil: ['Discover', 'Watch', 'Questions', 'Connect', 'Welcome ka dito', 'Show more', 'Show less'],
 };
 export const designCopy = (code: string) => labels[code] || labels.en;
+
+// Special menu label for "Your next steps" (top menu, bottom nav and footer link). Only Filipino has one.
+const nextStepsMenuLabels: Record<string, string> = {
+  fil: 'Your next steps',
+};
+export const nextStepsMenuLabel = (code: string, sectionTitle: string) => nextStepsMenuLabels[code] || sectionTitle;

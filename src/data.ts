@@ -181,13 +181,15 @@ export const APP_NAME = 'Good News & Truth';
 // The only link in the "Connect" section.
 export const CONNECT_URL = 'https://churcherlaebt.ch/';
 
-// "Read scriptures" button: opens the Gospel of John, chapter 1, on bible.com in the person's language.
+// "Read scriptures" button: opens the Gospel of John, chapter 1, on bible.com (German/Romansh: bibleserver.com) in the person's language.
 // Every link was opened once (see the table in the job report). If a link ever breaks, only change it here.
 export const BIBLE_JOHN_1: Record<string, string> = {
-  de: 'https://www.bible.com/bible/157/JHN.1.SLT', // Schlachter 2000 (note: this Bible text itself uses the letter sharp-s, we cannot change that)
+  // German = Neues Leben Bibel (NLB), Siggi's decision. NLB is NOT on bible.com (checked: not in the German version list, not found by search),
+  // so this is the official NLB reader of ERF Bibleserver (https://www.bibleserver.com/NLB/Johannes1). The page was opened and is John 1 in NLB.
+  de: 'https://www.bibleserver.com/NLB/Johannes1', // Neues Leben Bibel (bibleserver.com, not bible.com)
   fr: 'https://www.bible.com/bible/93/JHN.1.LSG', // Louis Segond
   it: 'https://www.bible.com/it/bible/122/JHN.1.NR06', // Nuova Riveduta 2006
-  rm: 'https://www.bible.com/bible/157/JHN.1.SLT', // Romansh: no Romansh version on bible.com, so we open the German one (Siggi's decision)
+  rm: 'https://www.bibleserver.com/NLB/Johannes1', // Romansh: no Romansh version online, so we open the German one = same link as de (Siggi's decision)
   en: 'https://www.bible.com/bible/111/JHN.1.NIV', // NIV
   sq: 'https://www.bible.com/sq/bible/3631/JHN.1.AL', // Bibla Shqip "Së bashku" 2020
   pt: 'https://www.bible.com/pt/bible/212/JHN.1.ARC', // Almeida Revista e Corrigida
@@ -291,7 +293,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     nav: {
       home: 'Startseite',
       gospelScripture: 'Die Gute Nachricht',
-      media: 'Medien & Videos',
+      media: 'Videos',
       apologetics: 'Apologetik FAQ',
       resources: 'Ressourcen',
       churches: 'Gemeinden in der Schweiz',
@@ -303,6 +305,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       ctaGospel: 'Gute Nachricht entdecken',
       ctaApologetics: 'Wahrheits-Fragen erkunden',
     },
+    // NEEDS PROOFREAD (Lam): the 3 Bible verses (1. Korinther 15,3-5) are the exact Neues Leben Bibel (NLB) text, copied from bibleserver.com; pillar 4 changed to match them (Petrus, zwölf Apostel)
     gospelMessage: {
       title: 'Die Botschaft der Guten Nachricht',
       subtitle: 'Aus der Bibel: 1. Korinther 15, Verse 3 bis 5',
@@ -314,15 +317,15 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       verses: [
         {
           reference: '1. Korinther 15,3',
-          text: 'Denn vor allem habe ich euch weitergegeben, was auch ich empfangen habe: Dass Christus für unsere Sünden gestorben ist nach den Schriften;',
+          text: 'Ich habe euch das weitergegeben, was am wichtigsten ist und was auch mir selbst überliefert wurde – dass Christus für unsere Sünden starb, genau wie es in der Schrift steht.',
         },
         {
           reference: '1. Korinther 15,4',
-          text: 'und dass er begraben wurde und dass er am dritten Tag auferstanden ist nach den Schriften;',
+          text: 'Er wurde begraben und ist am dritten Tag von den Toten auferstanden, wie es in der Schrift steht.',
         },
         {
           reference: '1. Korinther 15,5',
-          text: 'und dass er Kephas erschienen ist, danach den Zwölfen.',
+          text: 'Er wurde von Petrus gesehen und dann von den zwölf Aposteln.',
         },
       ],
       corePillars: [
@@ -340,14 +343,15 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
         },
         {
           title: 'Er erschien den Zeugen',
-          description: 'Er erschien Kephas (Petrus) und den Zwölfen – die Auferstehung ist durch historische Augenzeugen verbürgt.',
+          description: 'Er wurde von Petrus und den zwölf Aposteln gesehen – die Auferstehung ist durch historische Augenzeugen verbürgt.',
         },
       ],
       faithPrayerTitle: 'Ein Gebet des Glaubens',
       faithPrayerText: '„Herr Jesus, ich erkenne an, dass ich gesündigt habe und Gnade brauche. Ich glaube, dass du für meine Sünden am Kreuz gestorben und auferstanden bist. Bitte vergib mir und tritt als mein Herr und Erlöser in mein Leben. Amen.“',
     },
+    // NEEDS PROOFREAD (Lam): one set of media words everywhere: "Videos", "Mehr Videos", "Videobibliothek"
     mediaSection: {
-      title: 'Mediathek & Videos',
+      title: 'Videos',
       subtitle: 'Entdecke das Evangelium, Beweise für die Auferstehung und christliche Philosophie im Videoformat.',
     },
     apologeticsSection: {
@@ -383,9 +387,9 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       step4Desc: 'Erzähle deinen Freunden und deiner Familie von der Liebe Gottes.',
     },
     ui: {
-      moreVideos: 'Weitere Videos',
+      moreVideos: 'Mehr Videos',
       back: 'Zurück',
-      videoLibrary: 'Videothek',
+      videoLibrary: 'Videobibliothek',
       all: 'Alle',
       english: 'Englisch',
       longVideo: 'Langes Video',
@@ -402,7 +406,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       closeVideo: 'Video schliessen',
       videoLanguage: 'Videosprache',
       selectLanguage: 'Sprache der App auswählen',
-      badgeVideos: 'Videogalerie',
+      badgeVideos: 'Videobibliothek',
       badgeQuestions: 'Christliche Apologetik & Wahrheit',
       badgeNextSteps: 'Im Glauben unterwegs',
       clear: 'Löschen',
@@ -653,10 +657,10 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       },
       {
         id: 'art-3',
-        title: 'Glaubensratgeber für Migrantinnen, Migranten und Ausländer in der Schweiz',
+        title: 'Glaubensratgeber für alle, die neu in der Schweiz sind',
         category: 'Gemeinschaft',
         readTime: '5 Min. Lesezeit',
-        summary: 'Praktische Tipps, wie du als Zugezogene oder Zugezogener in der Schweiz Gemeinschaft, geistliche Nahrung und ein Zuhause im Glauben findest.',
+        summary: 'Praktische Tipps, wie du in der Schweiz Gemeinschaft, geistliche Nahrung und ein Zuhause im Glauben findest, wenn du neu im Land bist.',
         content: [
           'Der Umzug in die Schweiz kann einschüchternd wirken: vier Landessprachen, unterschiedliche lokale Regeln und eher private soziale Strukturen.',
           'Christliche Gemeinden in Zürich, Genf, Basel, Bern und im Tessin gehören zu den herzlichsten Anlaufstellen für Neuankömmlinge.',
@@ -3806,14 +3810,15 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     nativeName: 'Filipino',
     flag: '🇵🇭',
     welcome: 'Kumusta! Piliin ang language mo.',
+    // Siggi's decision: the menu labels stay in English in Filipino (same words as the English menu)
     nav: {
       home: 'Home',
-      gospelScripture: 'Magandang Balita',
-      media: 'Mga Video',
-      apologetics: 'Mga Tanong',
-      resources: 'Mga Resources',
-      churches: 'Mga Church sa Switzerland',
-      nextSteps: 'Next Steps',
+      gospelScripture: 'Good News',
+      media: 'Watch',
+      apologetics: 'Questions',
+      resources: 'Explore further',
+      churches: 'Connect',
+      nextSteps: 'Your next steps',
     },
     hero: {
       subtitle: 'Faith, katotohanan, at pag-asang hindi kumukupas',
@@ -3821,27 +3826,27 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       ctaGospel: 'Tuklasin ang Good News',
       ctaApologetics: 'Tingnan ang mga tanong',
     },
-    // PROOFREAD DOUBT (Lam): verse texts and prayer NOT changed on purpose; the 1 Cor 15 verse text is not the same as MBB05 (the version linked in BIBLE_JOHN_1, which says Pedro, not Cefas); pillar 2 says 'mga disipulo' while EN says Roman soldiers and DE says guards + eyewitnesses
+    // NEEDS PROOFREAD (Lam): the 3 Bible verses (1 Mga Taga-Corinto 15:3-5) are the exact MBB05 text (Magandang Balita Biblia 2005, the version of the Read-scriptures link), copied from bible.com; pillar 4 now says Pedro. PROOFREAD DOUBT: the prayer text was not changed; pillar 2 says 'mga disipulo' while EN says Roman soldiers and DE says guards + eyewitnesses
     gospelMessage: {
       title: 'Ang puso ng Good News',
-      subtitle: 'Mula sa Bible: 1 Corinto kabanata 15, talata 3 hanggang 5',
+      subtitle: 'Mula sa Bible: 1 Mga Taga-Corinto kabanata 15, talata 3 hanggang 5',
       scene1Intro: 'Kumusta at welcome! Masaya kami na nandito ka para sama-samang tuklasin ang faith at katotohanan. Saan ka man galing at anuman ang language mo, welcome ka rito.',
-      scene2Transition: 'Tingnan natin ang pinakaimportanteng mensahe ng Good News, na nasa Bible sa 1 Corinto kabanata 15, talata 3 hanggang 5.',
-      scene3ScriptureHeading: '1 Corinto 15:3–5',
+      scene2Transition: 'Tingnan natin ang pinakaimportanteng mensahe ng Good News, na nasa Bible sa 1 Mga Taga-Corinto kabanata 15, talata 3 hanggang 5.',
+      scene3ScriptureHeading: '1 Mga Taga-Corinto 15:3–5',
       scene4Closing: 'Salamat sa panonood at pagbabasa. Libre kang mag-explore ng iba pang sagot at resources dito sa app.',
-      scriptureReference: '1 Corinto 15:3-5',
+      scriptureReference: '1 Mga Taga-Corinto 15:3-5',
       verses: [
         {
-          reference: '1 Corinto 15:3',
-          text: 'Sapagkat ibinigay ko sa inyo bilang pinakamahalaga ang akin ding tinanggap: na si Cristo ay namatay para sa ating mga kasalanan, ayon sa Kasulatan;',
+          reference: '1 Mga Taga-Corinto 15:3',
+          text: "Sapagkat ibinigay ko sa inyo itong pinakamahalagang katuruan na tinanggap ko rin: si Cristo'y namatay dahil sa ating mga kasalanan, bilang katuparan sa sinasabi sa Kasulatan;",
         },
         {
-          reference: '1 Corinto 15:4',
-          text: 'na Siya ay inilibing, at muling nabuhay sa ikatlong araw ayon sa Kasulatan;',
+          reference: '1 Mga Taga-Corinto 15:4',
+          text: 'inilibing siya at muling nabuhay sa ikatlong araw, ayon din sa Kasulatan;',
         },
         {
-          reference: '1 Corinto 15:5',
-          text: 'at Siya ay nagpakita kay Cefas, at pagkatapos ay sa Labindalawa.',
+          reference: '1 Mga Taga-Corinto 15:5',
+          text: "at siya'y nagpakita kay Pedro, at saka sa Labindalawa.",
         },
       ],
       corePillars: [
@@ -3859,7 +3864,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
         },
         {
           title: 'Nagpakita Siya sa mga saksi',
-          description: 'Nagpakita Siya kay Cefas (Pedro) at sa Labindalawa. Ito ang patunay ng Kanyang muling pagkabuhay.',
+          description: 'Nagpakita Siya kay Pedro at sa Labindalawa. Ito ang patunay ng Kanyang muling pagkabuhay.',
         },
       ],
       faithPrayerTitle: 'Prayer of Faith at Pagtanggap',

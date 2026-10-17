@@ -43,7 +43,7 @@ export const NextStepsSection: React.FC<NextStepsSectionProps> = ({
       title: nextStepsSection.step2Title,
       desc: nextStepsSection.step2Desc,
       icon: BookOpen,
-      // Opens the Gospel of John, chapter 1, on bible.com in the person's language (new tab)
+      // Opens the Gospel of John, chapter 1, on bible.com (German/Romansh: bibleserver.com, because the NLB is not on bible.com) in the person's language (new tab)
       href: BIBLE_JOHN_1[currentLang.code] || BIBLE_JOHN_1.en,
       btnText: ui.btnRead,
     },
