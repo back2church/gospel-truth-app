@@ -12,7 +12,6 @@ const labels: Record<string, string[]> = {
   pt: ['Descobrir', 'Vídeos', 'Perguntas', 'Conectar', 'Você é bem-vindo aqui', 'Mostrar mais', 'Mostrar menos'],
   es: ['Descubrir', 'Videos', 'Preguntas', 'Conectar', 'Aquí eres bienvenido', 'Ver más', 'Ver menos'],
   sr: ['Otkrij', 'Video', 'Pitanja', 'Poveži se', 'Ovde si dobrodošao', 'Prikaži više', 'Prikaži manje'],
-  // NEEDS PROOFREAD (Lam)
-  fil: ['Discover', 'Watch', 'Questions', 'Connect', 'Welcome ka dito', 'Magpakita pa', 'Magpakita nang mas kaunti'],
+  fil: ['Discover', 'Watch', 'Questions', 'Connect', 'Welcome ka dito', 'Show more', 'Show less'],
 };
 export const designCopy = (code: string) => labels[code] || labels.en;
