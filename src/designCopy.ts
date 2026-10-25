@@ -19,7 +19,6 @@ const labels: Record<string, DesignCopy> = {
   de: { discover: 'Entdecken', questions: 'Fragen', connect: 'Kontakt', welcome: 'Du bist hier willkommen', showMore: 'Mehr anzeigen', showLess: 'Weniger anzeigen' },
   fr: { discover: 'Découvrir', questions: 'Questions', connect: 'Rencontrer', welcome: 'Vous êtes les bienvenus', showMore: 'Voir plus', showLess: 'Voir moins' },
   it: { discover: 'Scopri', questions: 'Domande', connect: 'Incontra', welcome: 'Qui sei benvenuto', showMore: 'Mostra altro', showLess: 'Mostra meno' },
-  rm: { discover: 'Scuvrir', questions: 'Dumondas', connect: 'Contact', welcome: 'Ti es bainvegni', showMore: 'Mussar dapli', showLess: 'Mussar main' },
   sq: { discover: 'Zbulo', questions: 'Pyetje', connect: 'Lidhu', welcome: 'Je i mirëpritur këtu', showMore: 'Shfaq më shumë', showLess: 'Shfaq më pak' },
   pt: { discover: 'Descobrir', questions: 'Perguntas', connect: 'Conectar', welcome: 'Você é bem-vindo aqui', showMore: 'Mostrar mais', showLess: 'Mostrar menos' },
   es: { discover: 'Descubrir', questions: 'Preguntas', connect: 'Conectar', welcome: 'Aquí eres bienvenido', showMore: 'Ver más', showLess: 'Ver menos' },

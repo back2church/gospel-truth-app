@@ -181,7 +181,7 @@ export const APP_NAME = 'Good News & Truth';
 // The only link in the "Connect" section.
 export const CONNECT_URL = 'https://churcherlaebt.ch/';
 
-// "Read scriptures" button: opens the Gospel of John, chapter 1, on bible.com (German/Romansh: bibleserver.com) in the person's language.
+// "Read scriptures" button: opens the Gospel of John, chapter 1, on bible.com (German: bibleserver.com) in the person's language.
 // Every link was opened once (see the table in the job report). If a link ever breaks, only change it here.
 export const BIBLE_JOHN_1: Record<string, string> = {
   // German = Neues Leben Bibel (NLB), Siggi's decision. NLB is NOT on bible.com (checked: not in the German version list, not found by search),
@@ -189,7 +189,6 @@ export const BIBLE_JOHN_1: Record<string, string> = {
   de: 'https://www.bibleserver.com/NLB/Johannes1', // Neues Leben Bibel (bibleserver.com, not bible.com)
   fr: 'https://www.bible.com/bible/93/JHN.1.LSG', // Louis Segond
   it: 'https://www.bible.com/it/bible/122/JHN.1.NR06', // Nuova Riveduta 2006
-  rm: 'https://www.bibleserver.com/NLB/Johannes1', // Romansh: no Romansh version online, so we open the German one = same link as de (Siggi's decision)
   en: 'https://www.bible.com/bible/111/JHN.1.NIV', // NIV
   sq: 'https://www.bible.com/sq/bible/3631/JHN.1.AL', // Bibla Shqip "Së bashku" 2020
   pt: 'https://www.bible.com/pt/bible/212/JHN.1.ARC', // Almeida Revista e Corrigida
@@ -198,9 +197,10 @@ export const BIBLE_JOHN_1: Record<string, string> = {
   fil: 'https://www.bible.com/tl/bible/144/JHN.1.MBB05', // Magandang Balita Biblia 2005
 };
 
-// 10 languages specified in user prompt & starter pack:
-// German (de), French (fr), Italian (it), Romansh (rm), English (en),
+// The 9 languages of the app (Romansh was removed on purpose, Siggi's decision 25 Oct 2026):
+// German (de), French (fr), Italian (it), English (en),
 // Albanian (sq), Portuguese (pt), Spanish (es), Serbian/Croatian (sr), Filipino (fil)
+// A saved choice that is not in this list (for example an old 'rm') is ignored: the app then uses the browser language or English.
 
 export const SUPPORTED_LANGUAGES: {
   code: string;
@@ -229,13 +229,6 @@ export const SUPPORTED_LANGUAGES: {
     nativeName: 'Italiano',
     flag: '🇨🇭',
     welcomeCyclingText: 'Ciao. Scegli la tua lingua.',
-  },
-  {
-    code: 'rm',
-    name: 'Romansh',
-    nativeName: 'Rumantsch',
-    flag: '🇨🇭',
-    welcomeCyclingText: 'Chau. Tscherna tia lingua.',
   },
   {
     code: 'en',
@@ -281,7 +274,7 @@ export const SUPPORTED_LANGUAGES: {
   },
 ];
 
-// Complete multilingual translation database for all 10 languages
+// Complete multilingual translation database for all 9 languages
 export const APP_CONTENT: Record<string, LanguageContent> = {
   // 1. GERMAN
   de: {
@@ -431,7 +424,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       btnRead: 'Bibel lesen',
       btnConnect: 'Gemeinde finden',
       btnShare: 'App teilen',
-      shareText: 'Entdecke die Gute Nachricht und Antworten auf Glaubensfragen in 10 Sprachen.',
+      shareText: 'Entdecke die Gute Nachricht und Antworten auf Glaubensfragen in 9 Sprachen.',
       linkCopied: 'Link in die Zwischenablage kopiert!',
       closePrayer: 'Gebet schliessen',
       prayerHeading: 'Gottes Geschenk der Gnade empfangen',
@@ -820,7 +813,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       btnRead: 'Lire les Écritures',
       btnConnect: 'Trouver une église',
       btnShare: 'Partager cette application',
-      shareText: 'Découvrez la Bonne Nouvelle et des réponses aux questions de foi en 10 langues.',
+      shareText: 'Découvrez la Bonne Nouvelle et des réponses aux questions de foi en 9 langues.',
       linkCopied: 'Lien copié dans le presse-papiers !',
       closePrayer: 'Fermer la prière',
       prayerHeading: 'Recevoir le don gratuit de la grâce de Dieu',
@@ -1212,7 +1205,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       btnRead: 'Leggi le Scritture',
       btnConnect: 'Trova una chiesa',
       btnShare: 'Condividi questa app',
-      shareText: 'Scopri la Buona Notizia e le risposte alle domande sulla fede in 10 lingue.',
+      shareText: 'Scopri la Buona Notizia e le risposte alle domande sulla fede in 9 lingue.',
       linkCopied: 'Link copiato negli appunti!',
       closePrayer: 'Chiudi la preghiera',
       prayerHeading: 'Ricevere il dono gratuito della grazia di Dio',
@@ -1456,399 +1449,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     ],
   },
 
-  // 4. ROMANSH
-  rm: {
-    code: 'rm',
-    name: 'Romansh',
-    nativeName: 'Rumantsch',
-    flag: '🇨🇭',
-    welcome: 'Chau. Tscherna tia lingua.',
-    nav: {
-      home: 'Chasa',
-      gospelScripture: "La Buna Novitad",
-      media: 'Videos & Medias',
-      apologetics: 'Veritad & Dumondas',
-      resources: 'Resursas',
-      churches: 'Baselgias en Svizra',
-      nextSteps: 'Proxims Pass',
-    },
-    hero: {
-      subtitle: 'Cretta, veritad e speranza eterna',
-      description: 'Bainvegni. Nua che ti eras er adascus: Scuvra il messadi da Jesus Cristus e respostas cleran a las grondas dumondas da la vita.',
-      ctaGospel: "Scuvrir la Buna Novitad",
-      ctaApologetics: 'Dumondas da Veritad',
-    },
-    gospelMessage: {
-      title: "Il cor da la Buna Novitad",
-      subtitle: 'Or da la Bibla: 1 Corints chapitel 15, versets 3 a 5',
-      scene1Intro: 'Chau e bainvegni. Nus essan fitg leds che ti es qua per explorar la cretta e la veritad ensemen. Ti es bainvegni qua da tut cor.',
-      scene2Transition: 'Prendain in mument per guardar il messadi central da l’Evangeli, scrit en 1 Corints 15:3–5.',
-      scene3ScriptureHeading: '1 Corints 15:3–5',
-      scene4Closing: 'Grazia per tia attenziun. Scuvra dapli resursas e respostas en questa app.',
-      scriptureReference: '1 Corints 15:3-5',
-      verses: [
-        {
-          reference: '1 Corints 15:3',
-          text: 'Pertutga en emprima lingia hai jau surdà a vus quai che jau hai retschavì: che Cristus è mort per noss putgads tenor las Scrittiras;',
-        },
-        {
-          reference: '1 Corints 15:4',
-          text: 'ch’el è vegnì sutterrà e ch’el è residià il terz di tenor las Scrittiras;',
-        },
-        {
-          reference: '1 Corints 15:5',
-          text: 'e ch’el è cumparì a Cefas e silsuenter als dudisch.',
-        },
-      ],
-      corePillars: [
-        {
-          title: 'Cristus è mort per noss putgads',
-          description: 'Jesus ha surpiglià la culpa per pussibilitar la reconciliaziun cun Dieu.',
-        },
-        {
-          title: 'El è vegnì sutterrà',
-          description: 'In fatg istoric confermà da perditgas oculares.',
-        },
-        {
-          title: 'El è residià il terz di',
-          description: 'La victoria definitiva sur da la mort e l’empermischun da la vita eterna.',
-        },
-        {
-          title: 'El è cumparì a las perditgas',
-          description: 'El è cumparì a Cefas ed als dudisch sco perditga viva da sia resurdida.',
-        },
-      ],
-      faithPrayerTitle: 'Uraschun da Cretta',
-      faithPrayerText: '«Segner Jesus, jau renconusch che jau hai fatg putgads. Jau crai che ti es mort vi da la crusch per mai ed es residià. Perduna a mai e ta daventa Segner da mia vita. Amen.»',
-    },
-    mediaSection: {
-      title: 'Galaria da Videos',
-      subtitle: 'Videos davart l’Evangeli e la cretta cristiana.',
-    },
-    apologeticsSection: {
-      title: 'Apologetica & Veritad',
-      subtitle: 'Respostas profundas a dumondas davart la cretta e las religiuns dal mund.',
-      searchPlaceholder: 'Tschertgar ina dumonda...',
-      categories: {
-        all: 'Tuts temas',
-        atheism: 'Ateissem & Scienza',
-        islam: 'Islam & Bibla',
-        hinduism: 'Induissem & Karma',
-        judaism: 'Gidaissem & Messias',
-      },
-    },
-    resourceSection: {
-      title: 'Artitgels & Resursas',
-      subtitle: 'Texts per approfundar tia cretta e relaziun cun Dieu.',
-    },
-    // machine-quality draft, not checked by native speaker
-    churchSection: {
-      title: 'Baselgias en Svizra',
-      subtitle: 'Chatta ina baselgia per encontrar auters cartents e per far tias dumondas.',
-    },
-    nextStepsSection: {
-      title: 'Tes Proxims Pass',
-      subtitle: 'Cumenzar tes viadi cun Jesus oz.',
-      step1Title: '1. Retschaiva Jesus en tes cor',
-      step1Desc: 'Ura cun in cor sincer a Dieu.',
-      step2Title: '2. Legia l’Evangeli tenor Gion',
-      step2Desc: 'Emprenda ad enconuscher Jesus Cristus.',
-      step3Title: '3. Chattscha ina communitad',
-      step3Desc: 'Crescha ensemen cun auters cartents.',
-      step4Title: '4. Cusseglia tes amis',
-      step4Desc: 'Fa part da questa gronda speranza.',
-    },
-    // machine-quality draft, not checked by native speaker
-    ui: {
-      moreVideos: 'Dapli videos',
-      back: 'Enavos',
-      videoLibrary: 'Videoteca',
-      all: 'Tut',
-      english: 'Englais',
-      longVideo: 'Video lung',
-      topics: {
-        goodnews: 'Buna Novitad',
-        jesus: 'Jesus',
-        science: 'Scienza',
-        morality: 'Moral',
-        suffering: 'Suffrir',
-        religions: 'Autras religiuns',
-        bible: 'Bibla',
-      },
-      playVideo: 'Mussar il video',
-      closeVideo: 'Serrar il video',
-      videoLanguage: 'Lingua dal video',
-      selectLanguage: 'Tscherner la lingua da l’app',
-      badgeVideos: 'Galaria da videos',
-      badgeQuestions: 'Apologetica cristiana e veritad',
-      badgeNextSteps: 'En viadi cun la cretta',
-      clear: 'Stizzar',
-      expandAll: 'Avrir tut',
-      collapseAll: 'Serrar tut',
-      noResults: 'Naginas dumondas correspundan a tia tschertga. Emprova in auter tema u in auter pled-clav.',
-      christianApologetics: 'Apologetica cristiana',
-      coreProposition: 'Tesa centrala:',
-      defenseHeading: 'Defensiun filosofica e teologica',
-      crossReferences: 'Pass impurtants da la Bibla',
-      thinkers: 'Pensaders e scienziads recumandads',
-      copied: 'Copià!',
-      copyAnswer: 'Copiar l’entira resposta',
-      copyText: {
-        question: 'Dumonda',
-        summary: 'Resumaziun',
-        answer: 'Resposta detagliada',
-        scriptures: 'Pass impurtants da la Scrittura',
-        thinkers: 'Apologets recumandads',
-      },
-      btnPray: 'Far l’uraziun d’acceptaziun',
-      btnRead: 'Leger las Scrittiras',
-      btnConnect: 'Chattar ina baselgia',
-      btnShare: 'Cundivider questa app',
-      shareText: 'Scuvra la Buna Novitad e respostas a dumondas da la cretta en 10 linguas.',
-      linkCopied: 'Il link è vegnì copià en l’archiv provisoric!',
-      closePrayer: 'Serrar l’uraziun',
-      prayerHeading: 'Retschaiver il regal gratuit da la grazia da Dieu',
-      prayerIntro: 'Dieu enconuscha tes cor. Urar n’è betg dir pleds magics, mabain avair ina posiziun sincera da regretg e da confidenza e retschaiver Jesus sco tes Segner e Salvader.',
-      prayedBtn: 'Jau hai fatg questa uraziun da tut cor',
-      copy: 'Copiar',
-      copiedShort: 'Copià',
-      welcomeFamily: 'Bainvegni en la famiglia da Dieu!',
-      welcomeLuke: 'Luca 15,10 di che i dat legria davant ils engels da Dieu per in sulet pecader che sa converta. Tes num è scrit en il cudesch da la vita.',
-      whatNext: 'Co ir vinavant:',
-      next1: 'Discurra mintga di cun Dieu en l’uraziun, sco cun in bun ami.',
-      next2: 'Leggia l’Evangeli tenor Gion per enconuscher Jesus.',
-      next3: 'Chatta ina baselgia locala che crai a la Bibla per crescher en la cuminanza.',
-      continueExploring: 'Cuntinuar a scuvrir',
-      readArticle: 'Leger l’artitgel',
-      closeArticle: 'Serrar l’artitgel',
-      scriptureRefs: 'Referenzas biblicas',
-      visitWebsite: 'Visitar la pagina web',
-    },
-    // machine-quality draft, not checked by native speaker
-    videos: [
-      {
-        id: 'vid-1',
-        youtubeId: 'KE6Y_GPxvSc',
-        title: 'La resurrecziun en 2 minutas!',
-        topic: 'goodnews',
-        source: 'drcraigvideos',
-        featured: true,
-      },
-      {
-        id: 'vid-2',
-        youtubeId: 'sSQDov6NNp0',
-        title: 'Tgi ch’è Jesus s’imaginà da esser?',
-        topic: 'jesus',
-        source: 'drcraigvideos',
-        featured: true,
-      },
-      {
-        id: 'vid-3',
-        youtubeId: 'OxiAikEk2vU',
-        title: 'L’argument moral',
-        topic: 'morality',
-        source: 'drcraigvideos',
-        featured: true,
-      },
-      {
-        id: 'vid-4',
-        youtubeId: '4qhQRMhUK1o',
-        title: 'È Jesus resuscità da la mort? – 1. part: ils fatgs',
-        topic: 'goodnews',
-        source: 'drcraigvideos',
-      },
-      {
-        id: 'vid-5',
-        youtubeId: '6SbJ4p6WiZE',
-        title: 'È Jesus resuscità da la mort? – 2. part: l’explicaziun',
-        topic: 'goodnews',
-        source: 'drcraigvideos',
-      },
-      {
-        id: 'vid-6',
-        youtubeId: 'RRyq6RwzlEM',
-        title: 'Co po Jesus esser l’unica via?',
-        topic: 'religions',
-        source: 'drcraigvideos',
-      },
-      {
-        id: 'vid-7',
-        youtubeId: '6CulBuMCLg0',
-        title: 'L’argument cosmologic kalam – 1. part: scientific',
-        topic: 'science',
-        source: 'drcraigvideos',
-      },
-      {
-        id: 'vid-8',
-        youtubeId: 'EE76nwimuT0',
-        title: 'L’adattaziun fina da l’univers',
-        topic: 'science',
-        source: 'drcraigvideos',
-      },
-      {
-        id: 'vid-9',
-        youtubeId: 'k64YJYBUFLM',
-        title: 'Suffrir e mal: il problem logic',
-        topic: 'suffering',
-        source: 'drcraigvideos',
-      },
-      {
-        id: 'vid-10',
-        youtubeId: '6NIB_n8Y66o',
-        title: 'God of Wonders (2008) | Documentaziun | John Whitcomb | Dan Sheedy | Don B. DeYoung',
-        topic: 'science',
-        source: 'Christian Movies',
-        long: true,
-      },
-      {
-        id: 'vid-11',
-        youtubeId: '7_CGP-12AE0',
-        title: 'La istorgia da la Bibla: da tge ch’ella s’occupa dal cumenzament fin a la fin',
-        topic: 'bible',
-        source: 'BibleProject',
-      },
-    ],
-    // machine-quality draft, not checked by native speaker
-    apologetics: [
-      {
-        id: 'ath-1',
-        worldview: 'atheism',
-        question: 'Co savain nus che Dieu exista? Tge ha da far l’origin e l’adattaziun fina da l’univers cun quai?',
-        shortAnswer: 'L’argument cosmologic kalam e l’adattaziun fina dal cosmos mussan che noss univers ha gì in cumenzament absolut e che el è regulà cun ina precisiun matematica extrema.',
-        detailedAnswer: 'L’astrofisica moderna conferma che temp, spazi, matiera ed energia èn naschids cun il Big Bang. Tut quai che cumenza dad exister ha ina caschun che surpassa spazi e temp. Ultra da quai èn las constantas fundamentalas da la fisica (la constanta da la gravitaziun, la forza nucleara ferma, la constanta cosmologica) regladas sin 1 sin 10^120, ina precisiun sco sch’ins tuccass ina meta da 2,5 cm sin l’autra vart da l’univers observabel. Il mero cas è matematicamain nunsustegnibel; in Spiert cosmic intenziunà resta ina explicaziun scientifica e filosofica la pli cohaerenta.',
-        keyScriptures: ['Genesis 1:1', 'Psalm 19:1', 'Romans 1:20'],
-        recommendedThinkers: ['Dr. William Lane Craig', 'Dr. John Lennox', 'Dr. Stephen Meyer'],
-      },
-      {
-        id: 'ath-2',
-        worldview: 'atheism',
-        question: 'Po ina moral objectiva exister senza Dieu?',
-        shortAnswer: 'Senza in legislatur transcendent èn las valurs moralas mo preferenzas socialas subjectivas u instincts da muntanera da l’evoluziun.',
-        detailedAnswer: 'Sch’il ateissem naturalistic è vair, è la moral mo in mecanissem evolutiv per la survivenza dals gens e nagin dovair moral objectiv oblighescha insatgi. Ma mintga uman sincer renconuscha che genocid, tortura d’innocents u oppressiun èn propi, objectivamain mals e betg mo socialmain malveglias. Valurs e dovairs morals objectivs preschuppona in standard absolut e transcendent dal bun, che la cretta cristiana identifitgescha cun il caracter da Dieu (sco che C.S. Lewis ha formulà quai en «Mere Christianity»).',
-        keyScriptures: ['Romans 2:14-15', 'Micah 6:8', 'Matthew 22:37-40'],
-        recommendedThinkers: ['C.S. Lewis', 'Dr. Frank Turek', 'Dr. Paul Copan'],
-      },
-      {
-        id: 'ath-3',
-        worldview: 'atheism',
-        question: 'Tge perdavlas istoricas sustegnan la resurrecziun corporala da Jesus?',
-        shortAnswer: 'Ils istorichers critics admettan ils fatgs fundamentals: Jesus è mort sin la crusch, la fossa era vida, scepticis han vivì ina conversiun nunspetgada e l’emprima baselgia è creschida spert a Jerusalem.',
-        detailedAnswer: 'Tenor la proceda dals «fatgs minimals» che er istorichers scepticis acceptan: (1) Jesus è mort tras la crusch romana, (2) el è vegnì sepulì en ina fossa enconuschenta, (3) la fossa è vegnida chattada vida da dunnas, quai che nagin autur dal 1. tschientaner n’avess inventà sch’el scrivess in mitos, (4) scepticis sco Giacun (il frar da Jesus) e Saul da Tars (il persecutur) èn sa midads tuttenina suenter ch’els han scuntrà Jesus resuscità e (5) ils dischipels eran pronts da supportar tortura e martiri. Umans mieran mintgatant per insatge ch’els tegnan per sbagl sco vair, ma nagin na mora per insatge ch’el ha inventà cun savida.',
-        keyScriptures: ['1 Corinthians 15:3-8', 'Luke 24:36-43', 'Acts 2:22-32'],
-        recommendedThinkers: ['Dr. Gary Habermas', 'N.T. Wright', 'Lee Strobel'],
-      },
-      {
-        id: 'isl-1',
-        worldview: 'islam',
-        question: 'È Jesus mort sin la crusch u è insatgi auter vegnì mess en sia plaza?',
-        shortAnswer: 'Perdavlas istoricas unanimas dal 1. tschientaner, analisas medicinalas ed actas militaras romanas confermeschan che Jesus è mort sin la crusch, cuntrari a la sura 4:157 che è vegnida scritta 600 onns pli tard.',
-        detailedAnswer: 'Il consens dals istorichers cristians, romans e giudaics (Tacitus, Flavius Josephus, Lucian) è che Jesus è vegnì exequì sut Pontius Pilatus. Ils exequiturs romans riscavan sezs la mort sch’in praschuner survivescha. La sura An-Nisa 4:157 di: «Els n’han betg mazzà el ni crucifichà el, mabain quai ha pareglià ad els uschia.» L’idea che Allah ha engianà ils perditgas cun midar la fatscha d’ina autra persuna (savens vegn pensà a Judas) fissi Dieu l’autur d’ina engianada religiusa mundiala durant 600 onns. La mort da Jesus è vegnida profetisada en Isaia 53 tschientaners pli baud e confermada da perditgas ch’han vis sia vart trapassada e sanc ed aua che èn sortids.',
-        keyScriptures: ['Isaiah 53:5', 'John 19:33-35', 'Philippians 2:8'],
-        recommendedThinkers: ['Nabeel Qureshi', 'Dr. David Wood', 'Dr. James White'],
-      },
-      {
-        id: 'isl-2',
-        worldview: 'islam',
-        question: 'Co pon cristians crair en la Trinitad senza crair en pliras divinitads (shirk)?',
-        shortAnswer: 'La Trinitad instruescha in Esser (tge che Dieu è) en trais Persunas (tgi che Dieu è), betg trais dieus separads.',
-        detailedAnswer: 'La cretta cristiana è strictamain monoteistica (Deuteronomium 6,4). Dieu è in en essenza e substanza, ma exista perpetnamain en trais persunas differentas: il Bab, il Fegl e il Spiert Sant. «Persuna» descriva il «tgi», la natira u l’esser descriva il «tge». Perquai che Dieu è perpetnamain amur (1 Gion 4,8), è l’amur divina gia avant la creaziun denter il Bab e il Fegl. En Jesus n’ha Dieu betg creà in’autra divinitad; Dieu sez è entrà en l’istorgia umana per nus salvar.',
-        keyScriptures: ['Matthew 28:19', '2 Corinthians 13:14', 'John 1:1-3, 14'],
-        recommendedThinkers: ['Dr. William Lane Craig', 'St. Augustine', 'Timothy Keller'],
-      },
-      {
-        id: 'isl-3',
-        worldview: 'islam',
-        question: 'Era la Bibla midada (tahrif)? Quant fidads èn ils manuscrits?',
-        shortAnswer: 'Nus avain bunamain 5800 manuscrits grecs dal Nov Testament da paucs decennis suenter ils originals, cun 99,5 % concordanza dal text e senza che ina dumonda da doctrina saja periclitada.',
-        detailedAnswer: 'Ils rodels dal Mar Mort, scuverts il 1947, han mussà che il text dal Vegl Testament è restà medem durant 1000 onns. Per il Nov Testament confermeschan ils papyrus pli vegls (sco il P52, bunamain 125 s.C.) ed las emprimas translaziuns en siric, latin e copt che ils Evangelis n’èn mai vegnids scrits da nov. Er l’Coran envida en la sura 5:46-47 e la sura 10:94 ils cartents da consultar l’Evangeli e la Tora ch’els avevan en il 7. tschientaner, quai che conferma che las Scrittiras n’eran betg ids a perder.',
-        keyScriptures: ['Psalm 119:89', 'Isaiah 40:8', '1 Peter 1:24-25'],
-        recommendedThinkers: ['Dr. Daniel Wallace', 'F.F. Bruce', 'Dr. Peter J. Williams'],
-      },
-      {
-        id: 'hin-1',
-        worldview: 'hinduism',
-        question: 'En tge sa differenzieschia l’Evangeli cristian da karma, reincarnaziun e maya?',
-        shortAnswer: 'Karma pretenda renaschientschas senza fin per pajar la atgna deivta, senza segirezza da sortir; l’Evangeli porscha grazia: Jesus ha pajà l’entira deivta ina giada per adina.',
-        detailedAnswer: 'En il pensar oriental è karma in equiliber cosmic impersunal che dovra bleras reincarnaziuns (samsara) per consumar las consequenzas da vitas passadas, senza garanzia da liberaziun (moksha). Il cuntrari instruescha la Bibla: l’uman è creà tenor l’maletg da Dieu, viva ina giada e stat lura davant il derschader (Ebrers 9,27). En sia misericordia porscha Dieu la grazia (favur nunmeritada): Jesus Cristus ha purtà noss putgads sin la crusch, uschia che nus retschaivan perdun immediat, adopziun sco uffants da Dieu e vita perpetna sco regal, betg sco status gudagnà.',
-        keyScriptures: ['Hebrews 9:27', 'Ephesians 2:8-9', 'Titus 3:5'],
-        recommendedThinkers: ['Ravi Zacharias', 'Dr. Vishal Mangalwadi', 'Sadhu Sundar Singh'],
-      },
-      {
-        id: 'hin-2',
-        worldview: 'hinduism',
-        question: 'È Dieu ina forza cosmica impersunala (Brahman) u in Bab persunal ed amurevel?',
-        shortAnswer: 'Il Creatur n’è betg ina energia indifferenta, mabain in Esser persunal che tschertga ina relaziun, enconuscha noss num ed è entrà en noss mund en Jesus.',
-        detailedAnswer: 'Il panteissem identifitgescha Dieu cun l’univers («tut è in, e tut è dieu»). Ma sch’il Dieu è tut, cuntegna Dieu il bun ed il mal, il chantschier e la guariziun, la crudelitad e la cumpassiun. Il Dieu da la Bibla è transcendent e persunal. El creescha or d’amur, ha ina voluntad, giavischa ina relaziun e s’ha revelà tangibelmain entrond en l’istorgia umana en Jesus Cristus per schubregiar nossas larmas.',
-        keyScriptures: ['John 17:3', 'Psalm 139:1-4', '1 John 4:9-10'],
-        recommendedThinkers: ['Dr. L.T. Jeyachandran', 'C.S. Lewis', 'Francis Schaeffer'],
-      },
-      {
-        id: 'jud-1',
-        worldview: 'judaism',
-        question: 'Nua vegn Jesus revelà en las Scrittiras ebraicas (Tanach / Vegl Testament)?',
-        shortAnswer: 'Dapli che 300 profezias concretas èn s’empleni en Jesus, tranter auter Isaia 53, Psalm 22, Daniel 9 e Micha 5,2.',
-        detailedAnswer: 'Tschientaners avant che la crusch romana è vegnida inventada, ha il Psalm 22 descrit maun e peis trapassads ed il tratg da la sort per las vestgiadas. Isaia 53 descriva il survient che suffra: «El è vegnì trapassà per nossas transgressiuns, sfracà per nossas culpas; la chasti che ans ha purtà pasch è stà sin el, e tras ses blessuras essan nus guaris.» Daniel 9,24-26 ha profetisà che il Messias vegnia e vegnia «stizzà» avant la destrucziun dal segund Tempel (che è capità l’onn 70 s.C.). Micha 5,2 numna Betlehem Efrata sco lieu da naschientscha.',
-        keyScriptures: ['Isaiah 53:1-12', 'Psalm 22:1-18', 'Micah 5:2', 'Daniel 9:26'],
-        recommendedThinkers: ['Dr. Michael Brown', 'Alfred Edersheim', 'Dr. Mitch Glaser'],
-      },
-      {
-        id: 'jud-2',
-        worldview: 'judaism',
-        question: 'Pertge accumplescha Jesus la Tora empè da l’abolir?',
-        shortAnswer: 'Jesus è vegnì sco l’ultim Agnè da Pasca e Grond-sacerdot, accumplind il sistem dals sacrificis ed inaugurond la Nova Alianza profetisada.',
-        detailedAnswer: 'En Jeremia 31,31-34 ha Dieu empermess ina Nova Alianza (Brit Chadashah) cun la chasa d’Israel. Ils sacrificis d’animals en il Tempel eran umbras che mussavan sin il sacrifici unic dal Messias. Jesus ha declerà: «Betg crajai che jau saja vegnì per abolir la Lescha u ils Profets; jau n’sun betg vegnì per abolir, mabain per accumplir» (Mateus 5,17). En Cristus èn Giudaus e betg-Giudaus unids tras la cretta en ina suletta famiglia d’Abraham.',
-        keyScriptures: ['Jeremiah 31:31-34', 'Matthew 5:17', 'Romans 11:17-24'],
-        recommendedThinkers: ['Dr. Michael Brown', 'Stan Telchin', 'Jonathan Cahn'],
-      },
-    ],
-    // machine-quality draft, not checked by native speaker
-    resources: [
-      {
-        id: 'art-1',
-        title: 'La Buna Novitad en 4 chapitels simpels: creaziun, crudada, spendrada, restaurazion',
-        category: 'Fundament',
-        readTime: '4 min lectura',
-        summary: 'La gronda istorgia da l’umanitad e pertge che Jesus è la punt enavos tar Dieu.',
-        content: [
-          '1. Creaziun: Dieu ha concepì cun amur in mund da beltad, urden e dignitad umana, creà per la cuminanza cun el.',
-          '2. Crudada: L’umanitad ha tschernì l’autonomia e la revolta, rut nossa relaziun cun Dieu ed endasà en il mund la mort spirituala, la culpa e la rutura.',
-          '3. Spendrada: Perquai che nus na pudain betg nus salvar sezs cun stentas moralas u ritus religius, ha Dieu trames Jesus Cristus a viver la vita senza putgads che nus n’avain betg pudì viver ed a murir en nossa plaza sin la crusch.',
-          '4. Restaurazion: Tras la resurrecziun corporala da Cristus vegn mintgin che metta sia confidenza en el perdunà, adoptà sco uffant da Dieu ed empermess in renovament perpetn.',
-        ],
-        scriptureReferences: ['Genesis 1:27', 'Romans 3:23', 'John 3:16', 'Revelation 21:4'],
-      },
-      {
-        id: 'art-2',
-        title: 'Salvads tras grazia, betg tras ovras: la Buna Novitad radicala',
-        category: 'Teologia',
-        readTime: '3 min lectura',
-        summary: 'Mintga religiun dal mund di a l’umanitad tge ch’ella sto FAR; mo l’Evangeli annunzia tge che è gia vegnì FATG.',
-        content: [
-          'La gronda part da las vistas dal mund preschenta ina stgala d’ovras: meditar avunda, obedir a avunda leschas, far avunda ritus per gudagnar la favur divina.',
-          'La cretta cristiana è unica en quai ch’ella annunzia che Dieu è vegnì giu per la stgala per salvar quels ch’eran cumplettamain nunpussaivels d’agid.',
-          'Sco ch’Efesers 2,8-9 di: «Cunquai che tras la grazia essas vus salvads, tras la cretta; e quai n’è betg or da vus, i è in regal da Dieu, betg or d’ovras, a ch’insatgi na possia sa vantar.»',
-          'Las bunas ovras èn il fritg da la spendrada, mai sia ragisch.',
-        ],
-        scriptureReferences: ['Ephesians 2:8-10', 'Romans 5:8', 'Galatians 2:16'],
-      },
-      {
-        id: 'art-3',
-        title: 'Guid da la cretta per migrants e esters en Svizra',
-        category: 'Cuminanza',
-        readTime: '5 min lectura',
-        summary: 'Cussegls pratics per chattar cuminanza, nutriment spiritual e communitad sco extra u migrant en Svizra.',
-        content: [
-          'Midar en Svizra po far tema: quatter linguas naziunalas, differentas reglas localas e structuras socialas pli resalvadas.',
-          'Las communitads cristianas a Turitg, Genevra, Basilea, Berna ed en il Tessin tutgan tranter ils lieus ils pli accumulants per novavegnids.',
-          'Sche ti discurras tudestg, franzos, talian, spagnol, portugais, albanais, serb u filipin, dat i ina baselgia locala u internaziunala viventa che spetga da t’accumular.',
-          'Duvra la secziun «Contact» da questa app per chattar ina baselgia datiers tai ed encontrar auters cartents.',
-        ],
-        scriptureReferences: ['Leviticus 19:34', 'Hebrews 10:24-25', 'Colossians 3:11'],
-      },
-    ],
-  },
-
-  // 5. ENGLISH
+  // 4. ENGLISH
   en: {
     code: 'en',
     name: 'English',
@@ -1994,7 +1595,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       btnRead: 'Read scriptures',
       btnConnect: 'Find a church',
       btnShare: 'Share this app',
-      shareText: 'Explore the Good News and answers to faith questions in 10 languages.',
+      shareText: 'Explore the Good News and answers to faith questions in 9 languages.',
       linkCopied: 'Link copied to clipboard!',
       closePrayer: 'Close prayer',
       prayerHeading: 'Receiving God\'s free gift of grace',
@@ -2235,7 +1836,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     ],
   },
 
-  // 6. ALBANIAN
+  // 5. ALBANIAN
   sq: {
     code: 'sq',
     name: 'Albanian',
@@ -2383,7 +1984,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       btnRead: 'Lexo Shkrimet',
       btnConnect: 'Gjej një kishë',
       btnShare: 'Ndaje këtë aplikacion',
-      shareText: 'Zbulo Lajmin e Mirë dhe përgjigje për pyetjet e besimit në 10 gjuhë.',
+      shareText: 'Zbulo Lajmin e Mirë dhe përgjigje për pyetjet e besimit në 9 gjuhë.',
       linkCopied: 'Lidhja u kopjua në clipboard!',
       closePrayer: 'Mbyll lutjen',
       prayerHeading: 'Pranimi i dhuratës falas të hirit të Perëndisë',
@@ -2627,7 +2228,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     ],
   },
 
-  // 7. PORTUGUESE
+  // 6. PORTUGUESE
   pt: {
     code: 'pt',
     name: 'Portuguese',
@@ -2775,7 +2376,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       btnRead: 'Ler as Escrituras',
       btnConnect: 'Encontrar uma igreja',
       btnShare: 'Compartilhar este app',
-      shareText: 'Descubra a Boa Notícia e respostas para perguntas de fé em 10 idiomas.',
+      shareText: 'Descubra a Boa Notícia e respostas para perguntas de fé em 9 idiomas.',
       linkCopied: 'Link copiado para a área de transferência!',
       closePrayer: 'Fechar a oração',
       prayerHeading: 'Receber o presente gratuito da graça de Deus',
@@ -3019,7 +2620,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     ],
   },
 
-  // 8. SPANISH
+  // 7. SPANISH
   es: {
     code: 'es',
     name: 'Spanish',
@@ -3167,7 +2768,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       btnRead: 'Leer las Escrituras',
       btnConnect: 'Buscar una iglesia',
       btnShare: 'Compartir esta app',
-      shareText: 'Descubre la Buena Noticia y respuestas a preguntas de fe en 10 idiomas.',
+      shareText: 'Descubre la Buena Noticia y respuestas a preguntas de fe en 9 idiomas.',
       linkCopied: '¡Enlace copiado al portapapeles!',
       closePrayer: 'Cerrar la oración',
       prayerHeading: 'Recibir el regalo gratuito de la gracia de Dios',
@@ -3411,7 +3012,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     ],
   },
 
-  // 9. SERBIAN / CROATIAN
+  // 8. SERBIAN / CROATIAN
   sr: {
     code: 'sr',
     name: 'Serbian / Croatian',
@@ -3559,7 +3160,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       btnRead: 'Čitajte Sveto pismo',
       btnConnect: 'Pronađite crkvu',
       btnShare: 'Podelite ovu aplikaciju',
-      shareText: 'Otkrijte Dobru vest i odgovore na pitanja vere na 10 jezika.',
+      shareText: 'Otkrijte Dobru vest i odgovore na pitanja vere na 9 jezika.',
       linkCopied: 'Link je kopiran u clipboard!',
       closePrayer: 'Zatvori molitvu',
       prayerHeading: 'Primite Božiji besplatni dar milosti',
@@ -3803,7 +3404,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
     ],
   },
 
-  // 10. FILIPINO / TAGALOG
+  // 9. FILIPINO / TAGALOG
   fil: {
     code: 'fil',
     name: 'Filipino',
@@ -3951,7 +3552,7 @@ export const APP_CONTENT: Record<string, LanguageContent> = {
       btnRead: 'Basahin ang Bible',
       btnConnect: 'Maghanap ng church',
       btnShare: 'I-share ang app',
-      shareText: 'Alamin ang Good News at mga sagot sa mga tanong tungkol sa faith, sa 10 languages.',
+      shareText: 'Alamin ang Good News at mga sagot sa mga tanong tungkol sa faith, sa 9 languages.',
       linkCopied: 'Na-copy na ang link!',
       closePrayer: 'Isara ang prayer',
       prayerHeading: 'Tanggapin ang libreng regalo ng grace ng Diyos',
