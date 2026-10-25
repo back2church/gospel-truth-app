@@ -87,7 +87,11 @@ body { padding-bottom: 0; }
   .shorts-panel { margin-top: 10px; }
   .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 26px 18px; }
   .site-footer { flex-direction: column; padding: 35px 22px; }
-  .footer-links { justify-content: flex-start; }
+  /* Small screens: one footer link per line, all on the left, copyright below them.
+     (Before, long German links wrapped side by side and the copyright stood out of line.) */
+  .footer-links { flex-direction: column; align-items: flex-start; gap: 0; }
+  .footer-links button { text-align: left; }
+  .footer-links span { margin-top: 12px; }
 }
 @media (max-width: 370px) { .brand-sub { display: none; } .pillars-grid { grid-template-columns: 1fr; } }
 button, select, a { -webkit-tap-highlight-color: transparent; }
