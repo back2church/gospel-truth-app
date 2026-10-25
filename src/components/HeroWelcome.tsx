@@ -5,8 +5,6 @@ import { designCopy } from '../designCopy.ts';
 
 interface HeroWelcomeProps {
   currentLang: LanguageContent;
-  selectedLangCode: string;
-  onSelectLang: (code: string) => void;
   onExploreGospel: () => void;
   onExploreApologetics: () => void;
 }
@@ -14,7 +12,7 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({currentLang, onExploreG
   <section id="hero" className="welcome-section">
     <div className="welcome-glow" aria-hidden="true" />
     <div className="welcome-content">
-      <p className="eyebrow"><span className="welcome-dot" />{designCopy(currentLang.code)[4]}</p>
+      <p className="eyebrow"><span className="welcome-dot" />{designCopy(currentLang.code).welcome}</p>
       <h1>{currentLang.hero.subtitle}</h1>
       <p className="welcome-description">{currentLang.hero.description}</p>
       <div className="welcome-actions">

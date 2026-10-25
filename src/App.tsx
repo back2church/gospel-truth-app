@@ -29,7 +29,7 @@ const getPageFromHash = (): Page => {
 };
 
 export default function App() {
-  // Try to pick language matching browser or fallback to German / English
+  // Pick the language: first the one saved last time, then the browser languages, else English.
   const [selectedLangCode, setSelectedLangCode] = useState<string>(() => {
     let saved: string | null = null;
     try { saved = localStorage.getItem('gospel-language'); } catch {}
@@ -44,7 +44,7 @@ export default function App() {
   // A section we should scroll to as soon as the main page is shown again (nav tap on another page).
   const pendingSection = useRef<string | null>(null);
 
-  // Check user language on initial mount
+  // Whenever the language changes: tell the browser (<html lang>) and save it for the next visit.
   useEffect(() => {
     document.documentElement.lang = selectedLangCode;
     try { localStorage.setItem('gospel-language', selectedLangCode); } catch {}
@@ -115,7 +115,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col relative selection:bg-sky-200 selection:text-sky-900">
-      {/* Soft warm sun glow in the top-right corner as specified in prompt */}
+      {/* Soft warm sun glow in the top-right corner (only decoration) */}
       <div
         className="pointer-events-none fixed top-0 right-0 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-amber-200/35 via-sky-100/20 to-transparent blur-3xl z-0"
         aria-hidden="true"
@@ -140,16 +140,14 @@ export default function App() {
           <>
             {/* 1. DISCOVER: welcome, Good News, and the 3 featured videos */}
             <div id="discover">
-              {/* Hero Welcome Section with 3s cycling greeting & language selector */}
+              {/* Welcome section: greeting, short text and two buttons */}
               <HeroWelcome
                 currentLang={currentContent}
-                selectedLangCode={selectedLangCode}
-                onSelectLang={setSelectedLangCode}
                 onExploreGospel={() => scrollToSection('gospel')}
                 onExploreApologetics={() => scrollToSection('apologetics')}
               />
 
-              {/* Core Gospel Presentation: Scenes 1-4 from video plan & 1 Cor 15:3-5 */}
+              {/* The Good News: the Bible text 1 Cor 15:3-5 and a short video */}
               <GospelScriptureSection
                 currentLang={currentContent}
                 onOpenPrayerModal={() => setIsPrayerModalOpen(true)}

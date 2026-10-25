@@ -19,10 +19,10 @@ export const Header: React.FC<HeaderProps> = ({currentLang, selectedLangCode, on
   const [active, setActive] = useState('discover');
   const copy = designCopy(currentLang.code);
   const items = [
-    {id: 'discover', label: copy[0], Icon: Compass},
-    {id: 'apologetics', label: copy[2], Icon: MessageCircle},
+    {id: 'discover', label: copy.discover, Icon: Compass},
+    {id: 'apologetics', label: copy.questions, Icon: MessageCircle},
     {id: 'next-steps', label: nextStepsMenuLabel(currentLang.code, currentLang.nextStepsSection.title), Icon: Footprints},
-    {id: 'connect', label: copy[3], Icon: Users},
+    {id: 'connect', label: copy.connect, Icon: Users},
   ];
   useEffect(() => {
     // On the video library / resources page "Discover" is highlighted.

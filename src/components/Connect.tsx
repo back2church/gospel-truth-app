@@ -14,7 +14,7 @@ export const Connect: React.FC<ConnectProps> = ({ currentLang }) => (
     <div className="mb-8">
       <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-800 bg-sky-100/80 px-3 py-1 rounded-full mb-3">
         <Users className="w-3.5 h-3.5" />
-        <span>{designCopy(currentLang.code)[3]}</span>
+        <span>{designCopy(currentLang.code).connect}</span>
       </div>
       <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-900 tracking-tight">
         {currentLang.churchSection.title}
