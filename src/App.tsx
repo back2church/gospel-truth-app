@@ -29,11 +29,13 @@ const getPageFromHash = (): Page => {
 };
 
 export default function App() {
-  // Pick the language: first the one saved last time, then the browser languages, else English.
+  // Pick the language: first ?lang= in the link (e.g. from back2church.org), then the one saved
+  // last time, then the browser languages, else English.
   const [selectedLangCode, setSelectedLangCode] = useState<string>(() => {
     let saved: string | null = null;
     try { saved = localStorage.getItem('gospel-language'); } catch {}
-    const candidates = [saved, ...navigator.languages.map((code) => code.toLowerCase().split('-')[0])];
+    const fromUrl = new URLSearchParams(window.location.search).get('lang')?.toLowerCase().split('-')[0] || null;
+    const candidates = [fromUrl, saved, ...navigator.languages.map((code) => code.toLowerCase().split('-')[0])];
     return candidates.find((code) => SUPPORTED_LANGUAGES.some((lang) => lang.code === code)) || 'en';
   });
   const [isPrayerModalOpen, setIsPrayerModalOpen] = useState(false);
